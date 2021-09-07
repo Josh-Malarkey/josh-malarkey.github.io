@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Josh's Github Page</title>
+    <link rel="stylesheet" href="css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@400;700&display=swap" rel="stylesheet" type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <header>
+        <nav id="header-nav" class="navbar navbar-expand-md navbar-light">
+          <div class="container">
+            <div class="navbar">
+              <a href="index.html" class="pull-left d-none d-lg-block">
+                <h1><i class="bi bi-cpu page-icons"></i></h1>
+              </a>
+              <div class="navbar-brand">
+                <a href="index.html">
+                    <h1>Josh's Github Page</h1>
+                </a>
+              </div>
+              <a href="index.html" class="pull-right d-none d-lg-block">
+                <h1><i class="bi bi-laptop page-icons"></i></h1>
+              </a>
+            </div>
+
+            <!-- collapsable toggle menu icon for mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="visually-hidden">Toggle Navigation</span><!-- for screen readers -->
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- menu navigation items-->
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul id="nav-list" class="navbar-nav ms-auto"><!-- ms auto pulls menu to the right-->
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">
+                      <span><i class="bi bi-bar-chart-line-fill"></i>
+                        <br class="d-none d-md-block"> Projects</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#"> 
+                      <span><i class="bi bi-info-circle-fill"></i><br class="d-none d-md-block"> About</span></a>
+                  </li>
+                  <li id="linkedin" class="nav-item d-none d-md-block">
+                    <a class="nav-link" href="https://www.linkedin.com/in/joshua-stine-38370496/"><span><i class="bi bi-linkedin"></i><br class="d-none d-md-block">LinkedIn
+                    </span></a>
+                  </li>
+                </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+    
+    <!-- mobile call icon when collapsed-->
+    <!--div id="call-btn" class="d-block d-md-none d-lg-none d-xl-none">
+      <a class="btn" href="tel: 410-602-5008">
+        <span><i class="bi bi-phone-vibrate-fill"></i> 410-602-5008</span></a>
+    </div-->
+    <div id="main content" class="container">
+      <!--div class="jumbotron">
+        <img src="images/jumbotron_768.jpeg" alt="Picture of restaurant" 
+        class="img-fluid d-block d-md-none d-lg-none d-xl-none">
+      </div-->
+      <div id="top-projects" class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <a href="#"><div id="proj-1"><span>Synthetic Data Algorithm</span></div></a>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <a href="#"><div id="proj-2"><span>MNIST Database 3-D Plots</span></div></a>
+        </div>
+        <div class="col-lg-4 col-md-12 col-sm-12">
+          <a href="#"><div id="proj-3"><span>Support Vector ML Algorithm</span></div></a>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/jquery-3.6.0.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

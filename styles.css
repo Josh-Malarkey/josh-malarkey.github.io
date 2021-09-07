@@ -1,0 +1,241 @@
+body {
+    font-size: 16px;
+    color: #fff;
+    /* background-color: #f5f4f44c; */
+    background-color: #efefef47;
+    font-family: 'Oxygen', sans-serif;
+  }
+
+  a {
+      text-decoration: none;
+  }
+  
+  /** HEADER **/
+  #header-nav {
+    background-color: #b4dff931;
+    border-radius: 0;
+    border: 0;
+  }
+  
+  .navbar-brand {
+    padding: 0px;
+    margin: 0px;
+  }
+  
+  .navbar-brand h1 { /* Josh's Github Page */
+    font-family: 'Oxygen', serif;
+    color: #5788a2;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px #222;
+    margin: 0px 20px 0px 20px;
+    line-height: .75;
+  }
+
+  #nav-list {
+    margin-top: 10px;
+  }
+
+ #nav-list a {
+   color: #5788a2;
+   text-align: center;
+ }
+
+ #nav-list a:hover {
+   background: #5788a262;
+   color: #f5f5f5;
+ }
+
+ #nav-list a span {
+  font-size: 1.5em;
+}
+
+.navbar button.navbar-toggler, .navbar .navbar-toggler-icon {
+  border: 1px solid #5788a2;
+}
+
+/** END HEADER **/
+
+/** HOME PAGE **/
+
+.container .jumbotron {
+  box-shadow: 0 0 50px #5788a2;
+  border: 2px solid #5788a2;
+  max-width: 1200px;
+}
+
+.page-icons {
+  color:#5788a2;
+}
+
+#proj-1, #proj-2, #proj-3 {
+  height: 350px;
+  width: 100%;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  position: relative;
+  border: 2px solid #3f0c1f;
+  overflow: hidden;
+}
+#proj-1:hover, #proj-2:hover, #proj-3:hover {
+  box-shadow: 0 5px 5px 1px #5788a2;
+}
+#proj-1 {
+  background: url('../images/synthetic-data-algorithm.png') no-repeat;
+  background-size: 100%;
+  background-position: center;
+}
+#proj-2{
+  background: url('../images/mnist-data-plot.png') no-repeat;
+  background-size: 100%;
+  background-position: center;
+}
+#proj-3{
+  background: url('../images/svc-prediction-algorithm.png') no-repeat;
+  background-size: 100%;
+  background-position: center;
+}
+#proj-1 span, #proj-2 span, #proj-3 span {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 1.6em;
+  background-color: #000;
+  color: #fff;
+  opacity: .8;
+}
+#top-projects {
+  max-inline-size: 100%;
+  justify-self: center;
+  max-width: 1200px;
+}
+
+/** END HOME PAGE **/
+
+/********** large devices only **********/
+/* home page */
+@media (min-width: 1200px) {
+  .jumbotron {
+    background: url(../images/jumbotron_1200.jpeg);
+    background-repeat: no-repeat;
+    height: 675px;
+  }
+}
+
+/********** medium devices only **********/
+@media (min-width: 992px) and (max-width: 1199px) {
+  /* header */
+  #logo-img {
+    background: url('../images/restaurant-logo_medium.png') no-repeat;
+    width: 100px;
+    height: 100px;
+    margin: 5px 5px 5px 0;
+  }
+  /* end header */
+
+  /* home page */
+  .jumbotron {
+    background: url(../images/jumbotron_992.jpeg);
+    background-repeat: no-repeat;
+    height: 558px;
+  }
+}
+
+/********** small devices only **********/
+@media (min-width: 768px) and (max-width: 991px) {
+    /* header */
+    .navbar-brand {
+      padding-top: 10px;
+      height: 80px;
+    }
+    .navbar-brand h1 { /* restaurant name */
+      padding-top: 10px;
+      font-size: 3.5vw; /* 1vw = 1% of viewport width */
+    }
+    .navbar-brand p { /* kosher cert */
+      font-size: .7em;
+      margin-top: 12px;
+    }
+    .navbar-brand p img { /* star-k */
+      height: 20px;
+    }
+    #phone {
+      font-size: 1.5vw;
+    }
+    /* end header */
+
+    /* home page */
+    .jumbotron {
+      background: url(../images/jumbotron_768.jpeg);
+      background-repeat: no-repeat;
+      height: 432px;
+    }
+}
+
+/********** extra devices only **********/
+@media (max-width: 767px) {
+  /* header */
+  .navbar-brand {
+    padding-top: 10px;
+    height: 80px;
+  }
+  .navbar-brand h1 { /* restaurant name */
+    padding-top: 10px;
+    font-size: 5.3vw; /* 1vw = 1% of viewport width */
+  }
+  .navbar-brand p { /* kosher cert */
+    font-size: .6em;
+    margin-top: 12px;
+  }
+  .navbar-brand p img { /* star-k */
+    height: 20px;
+  }
+  #navbarNavDropdown a { /* collapsed nav menu icon */
+    font-size: 1.2em;
+  }
+  #navbarNavDropdown a span{
+    font-size: 1em;
+    margin-right: 10px;
+  }
+  #call-btn > a {
+    font-size: 1.5em;
+    display: block;
+    margin: 20px;
+    padding: 10px;
+    border: 2px solid #fff;
+    background-color: #f6b319;
+    color: #951c49;
+  }
+  #xs-deliver {
+    margin-top: -10px;
+    padding: 5px;
+    font-size: .7em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+  /* end header */
+
+  /* home page */
+  .container .jumbotron {
+    width: 360px;
+    margin-top: 30px;
+    padding: 0;
+  }
+  #menu-tile, #specials-tile {
+    width: 360px;
+    margin: 10 auto 15px;
+  }
+}
+
+/********** super extra small devices (e.g., iPhone 4) **********/
+@media (max-width: 479px) {
+  /* header */
+  /* end header */
+  /* home page */
+  #menu-tile, #specials-tile {
+    width: 280px;
+    margin: 0 auto 15px;
+  }
+}
