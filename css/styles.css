@@ -199,14 +199,17 @@ body {
     font-size: 1em;
     margin-right: 10px;
   }
-  #call-btn > a {
+  #linkedin-btn > a { /* mobile linkedin icon */
     font-size: 1.5em;
     display: block;
     margin: 20px;
     padding: 10px;
     border: 2px solid #fff;
-    background-color: #f6b319;
-    color: #951c49;
+    background-color: #5788a2;
+    color: #fff;
+  }
+  #linkedin-btn:hover > a{
+    background-color: #5788a262;
   }
   #xs-deliver {
     margin-top: -10px;
