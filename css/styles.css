@@ -80,18 +80,18 @@ body {
 #proj-1:hover, #proj-2:hover, #proj-3:hover {
   box-shadow: 0 5px 5px 1px #5788a2;
 }
-#proj-1 {
+#proj-1{
+  background: url('../images/tableau-co2-dashboard.png') no-repeat;
+  background-size: 100%;
+  background-position: center;
+}
+#proj-2 {
   background: url('../images/iris-data-analysis.png') no-repeat;
   background-size: 100%;
   background-position: center;
 }
-#proj-2{
-  background: url('../images/mnist-data-plot.png') no-repeat;
-  background-size: 100%;
-  background-position: center;
-}
 #proj-3{
-  background: url('../images/svc-prediction-algorithm.png') no-repeat;
+  background: url('../images/mnist-data-plot.png') no-repeat;
   background-size: 100%;
   background-position: center;
 }
@@ -101,7 +101,7 @@ body {
   right: 0;
   width: 100%;
   text-align: center;
-  font-size: 1.6em;
+  font-size: 1.2em;
   background-color: #000;
   color: #fff;
   opacity: .8;
