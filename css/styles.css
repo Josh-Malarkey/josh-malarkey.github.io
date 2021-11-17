@@ -23,7 +23,7 @@ a {
 }
 
 .navbar-brand h1 { /* Josh's Github Page */
-  font-family: 'Oxygen', serif;
+  font-family: 'Oxygen', sans-serif;
   color: #5788a2;
   font-size: 1.5em;
   font-weight: bold;
