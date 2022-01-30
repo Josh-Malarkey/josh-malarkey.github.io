@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>COVID Dash App - Josh's Github Page</title>
+  </head>
+  <body>
+    <div id="load_text">
+      <span style="font-size: 1.2em; color: black; text-align: center"
+        >It may take the app up to 60 seconds to load due to live data being
+        extracted from external resources...</span
+      >
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12">
+      <iframe
+        id="covid_app"
+        src="https://covid-variant-dash-app.herokuapp.com/"
+        style="position: absolute; width: 100%; height: 100%; border: none"
+      ></iframe>
+      <script>
+        document.getElementById('covid_app').onload = function () {
+          const loadMessage = document.getElementById('load_text');
+          loadMessage.style.display = 'none';
+        };
+      </script>
+    </div>
+  </body>
+</html>
