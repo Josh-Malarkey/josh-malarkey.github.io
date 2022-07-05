@@ -1,6 +1,7 @@
 /*
 Theme Name: ME – Resume and Personal Portfolio Responsive Template
 Author URI: http://webthemez.com/ 
+Edited by: Josh Stine
 */
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,700);
 * {
@@ -31,37 +32,6 @@ p {
 .white {
 	background: #fff;
 }
-/* .pDark p {
-	color: #6D6D6D;
-}
-
-.pDarker p {
-	color: #484848;
-}
-
-.pDark h3 {
-	color: #BEBEBE;
-} */
-/* .btn, .form-control, .team-socials i {
-	border-radius: 0px !important;
-} */
-/* .button-outline {
-	-webkit-font-smoothing: antialiased;
-	display: inline-block;
-	vertical-align: middle;
-	zoom: 1;
-	color: #fff;
-	padding: 10px 25px;
-	border: 2px solid #fff;
-	border-radius: 0px;
-	font-size: 16px;
-	font-weight: 400;
-	background: rgba(255,255,255,0.15);
-}
-.button-outline:hover {
-	color: #fff;
-	background: rgba(255,255,255,0.35);
-} */
 .portfolio-link{
 	color: black
 }
@@ -132,20 +102,10 @@ h2 {
 	border-radius: 0;
 	top: 0px;
 }
-/* .navbar-inverse .navbar-toggle {
-	border-color: #FF7A00;
-	background-color: #FF7A00;
-} */
 .header .navbar {
 	margin: 0;
 	background: transparent !important;
 }
-/* .navbar-inverse .navbar-toggle .icon-bar {
-background-color: #FF7A00;
-} */
-/* .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
-	background: #FF7A00;
-} */
 .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
 	color: #fff;
 }
@@ -179,41 +139,6 @@ background: rgba(54, 52, 50, 0.95) !important;
 -moz-box-shadow: 0px 3px 4px 0px rgba(50, 50, 50, 0.38);
 box-shadow: 0px 3px 4px 0px rgba(50, 50, 50, 0.38);
 }
-/*.carousel-inner*/
-/* #myCarousel {
-	margin-top: 50px;
-	border-bottom: 4px solid #FF7A00;
-}
-.carousel-inner > .item {
-}
-.carousel-caption {
-	padding: 0px;
-	bottom: 40%;
-	display: block;
-	height: 80px;
-}
-.carousel-caption h1 {
-	font-size: 45px;
-	padding: 10px 15px;
-	background: rgba(128, 180, 33, 0.80);
-	color: #FFFFFF;
-	text-shadow: none;
-	font-weight: bold;
-	display: inline-block;
-}
-.carousel-caption h3 {
-	font-size: 30px;
-	color: #1C4604;
-	font-weight: bold;
-	text-shadow: #fff 1px 1px 1px;
-}
-.actionPanel {
-	padding: 25px 0;
-	background: #FF7A00;
-}
-.actionPanel h3 {
-	margin: 0px;
-} */
 /*----Nav ----*/
 .header .navbar-brand {
 	float: left;
@@ -227,14 +152,6 @@ box-shadow: 0px 3px 4px 0px rgba(50, 50, 50, 0.38);
 	font-family: 'Pacifico', cursive;
 	font-weight: 400;
 }
-/* .logo {
-	font-size: 2.2em;
-	text-shadow: none;
-	margin: 8px 0 0 0;
-}
-.logo:hover {
-	color: #5A5A5A;
-} */
 .header .navbar {
 	margin: 0;
 	background: #fff;
@@ -283,12 +200,6 @@ box-shadow: 0px 3px 4px 0px rgba(50, 50, 50, 0.38);
 	font-size: 1.1em;
 	line-height: 1.6em;
 }
-/* .darkBg {
-	background: rgb(44, 44, 44);
-}
-.darkBg .fa {
-	color: #145E8F;
-} */
 /*--- Banner ----*/
 .banner-container {
 	width: 100%;
@@ -372,30 +283,6 @@ box-shadow: 0px 3px 4px 0px rgba(50, 50, 50, 0.38);
 .pdingBtm30 {
 	padding-bottom: 30px;
 }
-/* .da-arrows span:after {
-	width: 25px;
-	height: 24px;
-}
-.da-arrows span {
-	position: absolute;
-	top: 50%;
-	height: 34px;
-	width: 34px;
-	border-radius: 60px;
-	background: none;
-}
-.da-dots span {
-	display: inline-block;
-	position: relative;
-	width: 16px;
-	height: 16px;
-	border-radius: 0px;
-	background: rgba(255, 255, 255, 0.13);
-	margin: 3px;
-	cursor: pointer;
-	box-shadow: 1px 1px 1px rgba(0,0,0,0.6) inset, 1px 1px 1px rgba(255,255,255,0.1);
-	border: 2px solid rgba(255, 255, 255, 0.6);
-} */
 .secPad {
 	padding: 60px 0;
 }
@@ -434,22 +321,6 @@ padding-top:60px;
 	padding: 20px;
 	margin: 0px;
 }
-/*parlex*/
-/* .bg-parlex {
-	padding-top: 0px;
-	background-image: url('../images/banner-bg.jpg');
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-}
-.parlex-back { 
-	padding: 60px 20px;
-	background-color: rgba(0, 0, 0, 0.37);
-	color: #FDFDFD !important;
-}
-.parlex-back h2{
-	margin:0 20px;
-} */
 /*Skills*/
 .skilltitle {
 	text-align: right;
@@ -753,7 +624,6 @@ footer {
  
 /* Section Gradients and Images */
 #portfolio{
-	/*background: url(../images/bg2.png) top repeat;*/
 	background: linear-gradient(to bottom, #fff 0%, #90A19D 25%);
 }
 
@@ -793,10 +663,6 @@ footer {
 	height:400px;
 	
 }
-/* .team-member .member-img img {
-	max-width: 100%;
-} */
-
 .header .navbar-nav > li > a {
 	padding: 25px 12px;
 }
@@ -900,7 +766,7 @@ margin-top: 30%;
 	margin: 0 0 20px;
 }
 .portfolio-item .portfolio-desc .folio-info h5 {
-	font-size: 11px;
+	font-size: 18px;
 }
 .skilltitle {
 	text-align: left;
@@ -955,7 +821,7 @@ display: inline-block;
 	text-transform: uppercase;
 	text-align: center;
 	font-weight: normal;
-	font-size: 10px;
+	font-size: 18px;
 	margin: 10px 0 0 0;
 }
 nav#filter li {
