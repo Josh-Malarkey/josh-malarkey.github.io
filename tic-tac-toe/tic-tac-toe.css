@@ -8,7 +8,7 @@
 }
 
 :root {
-    --cell-size: min(20vh, 200px);
+    --cell-size: min(20vh, 30vw);
     --mark-size: calc(var(--cell-size) * .9);
 }
 
