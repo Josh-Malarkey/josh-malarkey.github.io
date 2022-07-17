@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" type="text/css" href="tic-tac-toe.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Marcellus+SC' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <div class="container" id="game-container">
+        <div class="row title-row">
+            <div class="col-md">
+            </div>  
+            <div class="col-md game-title">
+                <h1>Tic-Tac-Toe</h1>
+            </div>
+            <div class="col-md reset-container">
+                <button id="resetButton">Reset All</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md"></div>
+            <div class="col-md">
+                <div class="row ai-setting">
+                    <div class="col-sm-4">
+                        <h4>ai Setting: <!--&#x2192;--></h4>
+                    </div>
+                    <div class="col-sm-7">
+                        <select id="aiSetting" class="form-select">
+                            <option>Easy</option>
+                            <option>Hard</option>
+                            <option>No AI</option>
+                          </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md"></div>
+        </div>
+        <div class="row">
+            <div class="score col-sm">
+                <div class="row">
+                    <div class="col-sm">
+                        X Wins: 
+                    </div>
+                    <div class="col-sm" id="humanScore"> 
+                    </div>
+                </div>
+            </div>
+            <div class="score col-sm">
+                <div class="row">
+                    <div class="col-sm">
+                        O Wins: 
+                    </div>
+                    <div class="col-sm" id="aiScore">
+                    </div>
+                </div>
+            </div>
+            <div class="score col-sm">
+                <div class="row">
+                    <div class="col-sm">
+                        Ties: 
+                    </div>
+                    <div class="col-sm" id="tieCount">
+                    </div>
+                </div> 
+            </div>
+        </div>
+        <div class="container" id="board-container">
+            <div class="board" id="board">
+                <div class="cell" id="0" data-cell></div>
+                <div class="cell" id="1" data-cell></div>
+                <div class="cell" id="2" data-cell></div>
+                <div class="cell" id="3" data-cell></div>
+                <div class="cell" id="4" data-cell></div>
+                <div class="cell" id="5" data-cell></div>
+                <div class="cell" id="6" data-cell></div>
+                <div class="cell" id="7" data-cell></div>
+                <div class="cell" id="8" data-cell></div>
+            </div>
+        </div>
+        <div class="winning-message" id="winningMessage">
+            <div data-winning-message-text></div>
+            <button id="restartButton">Restart</button>
+        </div>
+    </div>
+    <script src="tic-tac-toe.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <body>
+</html>
