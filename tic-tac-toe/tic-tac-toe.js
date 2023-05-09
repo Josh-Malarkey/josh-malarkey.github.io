@@ -32,7 +32,7 @@ const aiWinElement = document.getElementById('aiScore');
 const humanWinElement = document.getElementById('humanScore');
 const tieCountElement = document.getElementById('tieCount');
 const aiSelection = document.getElementById('aiSetting');
-let aiClass = 'Easy';
+let aiClass = 'Hard';
 let circleTurn
 
 
