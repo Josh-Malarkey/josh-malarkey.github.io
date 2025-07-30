@@ -1,9 +1,95 @@
 /*
 Theme Name: ME – Resume and Personal Portfolio Responsive Template
 Author URI: http://webthemez.com/ 
-Edited by: Josh Stine
+Edited by: Josh Malarkey
 */
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,700);
+:root {
+	/* Gunmetal */
+	--gunmetal: #1f363d;
+	--gunmetal-100: #060b0c;
+	--gunmetal-200: #0c1618;
+	--gunmetal-300: #122025;
+	--gunmetal-400: #192b31;
+	--gunmetal-500: #1f363d;
+	--gunmetal-600: #3b6775;
+	--gunmetal-700: #5898ab;
+	--gunmetal-800: #90bac7;
+	--gunmetal-900: #c7dde3;
+
+	/* Dark Slate Gray */
+	--dark-slate-gray: #305865;
+	--dark-slate-gray-100: #091114;
+	--dark-slate-gray-200: #132328;
+	--dark-slate-gray-300: #1c343c;
+	--dark-slate-gray-400: #264650;
+	--dark-slate-gray-500: #305865;
+	--dark-slate-gray-600: #478296;
+	--dark-slate-gray-700: #6ba6b9;
+	--dark-slate-gray-800: #9dc4d1;
+	--dark-slate-gray-900: #cee1e8;
+
+	/* Cerulean */
+	--cerulean: #40798c;
+	--cerulean-100: #0d181c;
+	--cerulean-200: #1a3038;
+	--cerulean-300: #274954;
+	--cerulean-400: #336170;
+	--cerulean-500: #40798c;
+	--cerulean-600: #579bb2;
+	--cerulean-700: #81b4c5;
+	--cerulean-800: #abcdd8;
+	--cerulean-900: #d5e6ec;
+
+	/* Verdigris */
+	--verdigris: #70a9a1;
+	--verdigris-100: #152321;
+	--verdigris-200: #2a4642;
+	--verdigris-300: #3f6964;
+	--verdigris-400: #548c85;
+	--verdigris-500: #70a9a1;
+	--verdigris-600: #8cbab4;
+	--verdigris-700: #a9cbc7;
+	--verdigris-800: #c6ddda;
+	--verdigris-900: #e2eeec;
+
+	/* Cambridge Blue */
+	--cambridge-blue: #9ec1a3;
+	--cambridge-blue-100: #1b2b1e;
+	--cambridge-blue-200: #37563c;
+	--cambridge-blue-300: #528159;
+	--cambridge-blue-400: #74a67b;
+	--cambridge-blue-500: #9ec1a3;
+	--cambridge-blue-600: #b2ceb6;
+	--cambridge-blue-700: #c5dac8;
+	--cambridge-blue-800: #d8e6db;
+	--cambridge-blue-900: #ecf3ed;
+
+	/* Alabaster */
+	--alabaster: #e7ece3;
+	--alabaster-100: #2e3726;
+	--alabaster-200: #5b6e4b;
+	--alabaster-300: #89a175;
+	--alabaster-400: #b8c7ac;
+	--alabaster-500: #e7ece3;
+	--alabaster-600: #ecf0e9;
+	--alabaster-700: #f1f4ef;
+	--alabaster-800: #f6f8f4;
+	--alabaster-900: #fafbfa;
+
+	/* Jet */
+	--jet: #353535;
+	--jet-100: #0b0b0b;
+	--jet-200: #151515;
+	--jet-300: #202020;
+	--jet-400: #2b2b2b;
+	--jet-500: #353535;
+	--jet-600: #5e5e5e;
+	--jet-700: #868686;
+	--jet-800: #aeaeae;
+	--jet-900: #d7d7d7;
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -25,9 +111,9 @@ body {
  background: #90A19D;
 }
 p {
-	color: #484848;
+	color: rgba(0, 0, 0, 0.8);
 	line-height: 22px;
-	font-size: 15px;
+	font-size: 1.2em;
 }
 .white {
 	background: #fff;
@@ -37,7 +123,7 @@ p {
 }
 a {
 	font-size: 1em;
-	color: #B38212;
+	color: var(--cerulean-600);
 	text-decoration: none;
 	text-shadow: none;
 	-webkit-transition: all 0.2s linear;
@@ -47,18 +133,23 @@ a {
 	transition: all 0.2s linear;
 }
 a:hover {
-	color: #ab2727;
+	color: var(--cerulean-500);
 	text-decoration: none;
 }
 .btn {
 	border: 0px;
-	border-radius: 0px;
+	border-radius: 30px;
 }
 .btn:hover {
-	background: #90A19D;
+	background: var(--cerulean);
+	box-shadow: 0px 0px 1px rgba(0,0,0,0.1);
+	transform: translateY(10px);
+	transition: background 0.3s ease;
 }
 .btn-primary {
-	background: #f0941f;
+	/* background: #f0941f; */
+	border: 1px solid #353535;
+	box-shadow: 0px 0px 1px rgba(0,0,0,0.1);
 }
 .form-control {
 	border-radius: 0px;
@@ -125,7 +216,6 @@ h2 {
 	/* border-radius: 18px;
 	border: black solid 1px; */
 }
-
 .defaultBg {
 	background: rgba(54, 52, 50, 0.5) !important;
 	-webkit-box-shadow: 0px 3px 4px 0px rgba(50, 50, 50, 0.38);
@@ -139,13 +229,13 @@ background: rgba(54, 52, 50, 0.95) !important;
 -moz-box-shadow: 0px 3px 4px 0px rgba(50, 50, 50, 0.38);
 box-shadow: 0px 3px 4px 0px rgba(50, 50, 50, 0.38);
 }
-/*----Nav ----*/
+
+/*---- Nav ----*/
 .header .navbar-brand {
 	float: left;
 	padding: 16px 15px;
 	line-height: 18px;
 	height: 50px;
-	/*color:#FF7A00;*/;
 }
 .navbar-brand b {
 	color: #fff;
@@ -200,13 +290,13 @@ box-shadow: 0px 3px 4px 0px rgba(50, 50, 50, 0.38);
 	font-size: 1.1em;
 	line-height: 1.6em;
 }
-/*--- Banner ----*/
+
+/*--- Banner ---*/
 .banner-container {
 	width: 100%;
 	position: relative;
 	padding: 0px;
 	box-shadow: 0px 0px 1px rgba(0,0,0,0.4);
-	/*background: url("../images/banner-bg.jpg") no-repeat;*/
 	background-size: 100% 100%;
 	background-size: cover;
 	position: relative;
@@ -248,7 +338,6 @@ box-shadow: 0px 3px 4px 0px rgba(50, 50, 50, 0.38);
 	font-size: 45px;
 	margin-bottom: 35px;
 	font-weight: bold;
-
 }
 
 .heroText h2 span {
@@ -259,8 +348,7 @@ box-shadow: 0px 3px 4px 0px rgba(50, 50, 50, 0.38);
 	padding-bottom: 0;
 	font-size: 45px;
 	margin-bottom: 35px;
-	font-weight: normal;
-	/* background-color: rgba(0, 0, 0, 0.5); */
+	background-color: rgba(0, 0, 0, 0.3);
 }
 .caption {
 	border-bottom: 2px solid #7a7a7a;
@@ -270,7 +358,7 @@ box-shadow: 0px 3px 4px 0px rgba(50, 50, 50, 0.38);
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	font-size: 20px;
-	background-color: rgba(255, 255, 255, 0.5);
+	background-color: rgba(255, 255, 255, 0.7);
 	transition: all 1000ms ease-in-out 0s;
 	transition-delay: 0.2s;
 }
@@ -286,41 +374,45 @@ box-shadow: 0px 3px 4px 0px rgba(50, 50, 50, 0.38);
 .secPad {
 	padding: 60px 0;
 }
-/*Intro Content*/
-#introText {
-	padding: 50px 0;
-	background: #90A19D; /* teal color */
-	background: linear-gradient(to top, #fff 20%, #90A19D 100%);
-}
-#introText h1 {
-	font-size: 40px;
-	margin: 0;
-	padding-bottom: 16px;
-	font-variant: small-caps;
-	color: #fff;
-}
-#introText p {
-	font-size: 16px;
-	color: black;
-}
+
+/*--- About Me ---*/
 #aboutMe{
-padding-top:60px;	
-	}
+	padding-top:60px;	
+	max-width: 1400px;
+	padding: 20px;
+	margin: 20px;
+}
 #aboutMe .txtHead {
-	background: #fff;
+	background: rgba(255, 255, 255, 0.6);
 	padding: 20px 10px;
+	border-radius: 10px;
 }
 #aboutMe .txtHead .fa {
 	font-size: 58px;
 	color: #5E5E5E;
 }
 .tileBox p {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	background-color: #f0f0f0;
-	font-size: 15px;
-	color: #777777;
+	font-size: 1.2em;
+	color: #000000;
+	padding: 20px;
+	margin: 0px;
+	border-radius: 10px;
+}
+
+.tileBox img {
+	max-width: 400px;
+	height: auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	padding: 20px;
 	margin: 0px;
 }
+
 /*Skills*/
 .skilltitle {
 	text-align: right;
@@ -336,6 +428,7 @@ padding-top:60px;
 .progress .progress-bar {
 	background-color: rgb(0, 187, 255) rgb(0, 187, 255) transparent transparent;
 }
+
 /*Skills*/
 .chart {
 	position: relative;
@@ -355,75 +448,73 @@ padding-top:60px;
 .flex-wrapper {
 	display: flex;
 	flex-flow: row nowrap;
-  }
+}
 
-  .chart-wrapper {
-	width: auto;
-  }
+.chart-wrapper {
+width: auto;
+}
 
-  .single-chart {
-	width: 33%;
-	justify-content: space-around ;
-	font-size: 1em;
-	text-align: center;
-  }
-  
-  .circular-chart {
-	display: block;
-	margin: 10px auto;
-	max-width: 80%;
-	max-height: 225px;
-  }
-  
-  .circle-bg {
-	fill: none;
-	stroke: #eee;
-	stroke-width: 3.8;
-  }
-  
-  .circle {
-	fill: none;
-	stroke-width: 0;
-	stroke-linecap: round;
-  }
+.single-chart {
+width: 33%;
+justify-content: space-around ;
+font-size: 1em;
+text-align: center;
+}
 
-  .circle-progress {
-	stroke-width: 2.8;
-	animation: progress 1s ease-out forwards;
-  }
+.circular-chart {
+display: block;
+margin: 10px auto;
+max-width: 80%;
+max-height: 225px;
+}
+
+.circle-bg {
+fill: none;
+stroke: #eee;
+stroke-width: 3.8;
+}
+
+.circle {
+fill: none;
+stroke-width: 0;
+stroke-linecap: round;
+}
+
+.circle-progress {
+stroke-width: 2.8;
+animation: progress 1s ease-out forwards;
+}
 
 
-  @keyframes progress {
-	0% {
-	  stroke-dasharray: 0 100;
-	}
-  }
-  
-  .circular-chart.red .circle {
+@keyframes progress {
+	0% { stroke-dasharray: 0 100; }
+}
+
+.circular-chart.red .circle {
 	stroke: #ab2727;
-  }
-  
-  .circular-chart.blue .circle {
+}
+
+.circular-chart.blue .circle {
 	stroke: #145E8F;
-  }
-  
-  .circular-chart.green .circle {
+}
+
+.circular-chart.green .circle {
 	stroke: #2a8227;
-  }
+}
   
-  .skillExp {
+.skillExp {
 	fill: #666;
 	font-family: sans-serif;
 	font-size: 0.25em;
 	text-anchor: middle;
-  }
+}
 
-  .skillName {
+.skillName {
 	fill: black;
 	font-family: sans-serif;
 	font-size: 0.3em;
 	text-anchor: middle;
-  }
+}
 
 /*Experience*/
 #experience{
@@ -446,8 +537,19 @@ padding-top:60px;
 }
 .experience-details .icon-block i {
 	font-size: 60px;
-	color: #f0941f;
 	margin: 8px 0 0;
+}
+#wellsfargo {
+	color: rgba(1, 22, 30, 0.6);
+}
+#self {
+	color: rgba(129, 178, 154, 0.9);
+}
+#computershare {
+	color: rgba(25, 100, 126, 0.9);
+}
+#vivino {
+	color: rgba(0, 100, 100, 0.5);
 }
 .experience-details span {
 	font-size: 14px;
@@ -469,7 +571,6 @@ padding-top:60px;
 }
 #portfolio article p {
 	margin-bottom: 1.45em;
-	/*set next row on the baseline*/;
 }
 nav#filter {
 	margin-bottom: 1.5em;
@@ -497,6 +598,7 @@ nav#filter a {
 	-o-transition: all 0.2s ease-in-out;
 	transition: all 0.2s ease-in-out;
 	box-shadow: 5px 5px 5px darkslategray;
+	border: darkslategray solid 1px;
 }
 .portfolio-link {
 	font-size: 1.2em;
@@ -541,7 +643,6 @@ nav#filter a {
 	display: block;
 }
 .portfolio-item .portfolio-desc a:hover {
-	/*text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.7);*/
 	text-decoration: none;
 }
 .portfolio-item .portfolio-desc .folio-info {
@@ -621,14 +722,17 @@ footer {
 .contact ul li i {
 	margin-right: 15px;
 }
+.form-group {
+	color: rgba(0,0,0);
+	background-color: rgba(255, 255, 255, 0.6);
+}
  
 /* Section Gradients and Images */
-#portfolio{
-	background: linear-gradient(to bottom, #fff 0%, #90A19D 25%);
+#resume{
+	background: linear-gradient(to bottom, #fff 0%, #90A19D 100%);
 }
-
-#experience{
-	background: linear-gradient(to top, #fff 50%, #90A19D 100%);
+#portfolio{
+	background: linear-gradient(to top, #fff 0%, #90A19D 100%);
 }
 #contactMe{
 	background: url(../images/contact-wide.jpg) top repeat;
@@ -661,10 +765,26 @@ footer {
 .banner-container > img {
 	min-width: 100%;
 	height:400px;
-	
+}
+.tileBox img {
+	max-width: 300px;
+	height: auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+	margin: 0px;
 }
 .header .navbar-nav > li > a {
 	padding: 25px 12px;
+}
+.portfolio-container {
+	background: rgba(255, 255, 255, 0.6);
+	border-radius: 15px;
+	padding: 25px;
+	margin-bottom: 30px;
+	backdrop-filter: blur(10px);
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 .portfolio-item:hover .folio-info {
 	top: 0px;
