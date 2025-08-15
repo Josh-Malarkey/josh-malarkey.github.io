@@ -8,11 +8,11 @@ const RESUME_DATA = {
             "Accomplishments": [
                 {
                     "Description": "Consulted with Executive leadership to implement a company wide OKR framework",
-                    "Categories": ["Communication", "Leadership"]
+                    "Categories": ["Leadership", "Teamwork"]
                 },
                 {
-                    "Description": "Collaborated with Customer Success team to develop data product strategy that increased ARR by $450K",
-                    "Categories": ["Communication", "Teamwork"]
+                    "Description": "Developed a suite of self-service dashboards to automate reporting for client pitches, renewals, and reviews",
+                    "Categories": ["Ownership", "Problem Solving"]
                 },
             ],
             "color": "rgba(0, 100, 100, 0.5)",
@@ -25,30 +25,34 @@ const RESUME_DATA = {
             "End Month": "Mar-2025",
             "Accomplishments": [
                 {
-                    "Description": "Optimized Looker/dbt models to deliver ta 7x improvement in load-time for client facing dashboards",
+                    "Description": "Optimized Looker/dbt models to deliver a 7x improvement in load-time for client facing dashboards",
                     "Categories": ["Ownership", "Problem Solving"]
                 },
                 {
                     "Description": "Implemented fault tolerant data pipelines & data models to reduce average query time by 82%",
-                    "Categories": ["Ownership", "Problem Solving"]
+                    "Categories": ["Continuous Learning", "Problem Solving"]
+                },
+                {
+                    "Description": "Lead project to develop data product strategy that increased ARR by $450K",
+                    "Categories": ["Communication", "Leadership"]
                 }
             ],
             "color": "rgba(0, 100, 100, 0.5)",
             "icon": "fa-glass"
         },
         {
-            "Company": "Wells Fargo CTS/Computershare",
+            "Company": "Wells Fargo acq. by Computershare",
             "Job Title": "Senior Analyst",
             "Start Month": "Dec-2019",
             "End Month": "Mar-2022",
             "Accomplishments": [
                 {
                     "Description": "Optimized T-SQL scripts to improve transaction processing time by 85%",
-                    "Categories": ["Problem Solving"]
+                    "Categories": ["Continuous Learning", "Problem Solving"]
                 },
                 {
-                    "Description": "CEstablished documentation standards and training protocols for internal systems across 60-person department",
-                    "Categories": ["Leadership", "Communication"]
+                    "Description": "Established documentation standards and training protocols for internal systems across 60-person department",
+                    "Categories": ["Communication", "Leadership", "Teamwork"]
                 }
             ],
             "color": "rgba(25, 100, 126, 0.5)",
@@ -88,7 +92,7 @@ const RESUME_DATA = {
                 },
                 {
                     "Description": "Key contributor to 6-person Agile team supporting data warehouse migration to SQL Server",
-                    "Categories": ["Ownership", "Problem Solving"]
+                    "Categories": ["Continuous Learning", "Teamwork"]
                 }
             ],
             "color": "rgba(1, 22, 30, 0.5)",
@@ -101,8 +105,8 @@ const RESUME_DATA = {
             "End Month": "Mar-2016",
             "Accomplishments": [
                 {
-                    "Description": "Automated data cleaning workflow to reduce new client onboarding timeline from 7 days to 5 days",
-                    "Categories": ["Communication", "Problem Solving"]
+                    "Description": "Lead project to automate data cleaning workflow reducing new client onboarding timeline from 7 days to 5 days",
+                    "Categories": ["Communication", "Leadership", "Teamwork"]
                 }
             ],
             "color": "rgba(1, 22, 30, 0.5)",
@@ -180,7 +184,7 @@ const RESUME_DATA = {
             "Statistical Analysis": "Expert",
             "Data Storage": "Advanced",
             "Data Pipelines": "Intermediate",
-            "A/B Testing": "Basic",
+            "A/B Testing": "Intermediate",
             "Frontend Design": "Basic"
         }
     }
@@ -211,8 +215,7 @@ function skillToNumber(skill) {
 }
 
 // CHART CREATION FUNCTIONS
-
-function createJobsChart() {
+function createJobHistoryBarChart() {
     // Process jobs data for stacked horizontal bar chart
     const processedJobs = [];
     
@@ -306,8 +309,8 @@ function createJobsChart() {
 
 function createSkillsCharts() {
     // Languages Radar Chart
-    const languages = Object.keys(RESUME_DATA.Skills.Languages);
-    const languageValues = Object.values(RESUME_DATA.Skills.Languages).map(skillToNumber);
+    const languages = Object.keys(RESUME_DATA.Skills["Languages"]);
+    const languageValues = Object.values(RESUME_DATA.Skills["Languages"]).map(skillToNumber);
 
     const languageTrace = {
         type: 'scatterpolar',
@@ -509,43 +512,6 @@ function calculateJobMonths(jobObject) {
 let activeFilters = new Set();
 let allCategories = new Set();
 
-// Group jobs by company
-function groupJobsByCompany(jobs) {
-    const companiesMap = new Map();
-    
-    jobs.forEach(job => {
-        if (!companiesMap.has(job.Company)) {
-            companiesMap.set(job.Company, []);
-        }
-        companiesMap.get(job.Company).push(job);
-    });
-    
-    // Sort jobs within each company by start date (oldest first)
-    companiesMap.forEach(jobs => {
-        jobs.sort((a, b) => {
-            const dateA = new Date(convertMonthToDate(a["Start Month"]));
-            const dateB = new Date(convertMonthToDate(b["Start Month"]));
-            return dateA - dateB;
-        });
-    });
-    
-    return companiesMap;
-}
-
-// Helper function to convert month format (e.g., "Jan-2022") to a date
-function convertMonthToDate(monthStr) {
-    if (monthStr === "Present") {
-        return new Date();
-    }
-    
-    const months = {
-        "Jan": 0, "Feb": 1, "Mar": 2, "Apr": 3, "May": 4, "Jun": 5,
-        "Jul": 6, "Aug": 7, "Sep": 8, "Oct": 9, "Nov": 10, "Dec": 11
-    };
-    
-    const [month, year] = monthStr.split("-");
-    return new Date(parseInt(year), months[month], 1);
-}
 
 // Extract all unique categories from job data
 function extractCategories(jobs) {
@@ -721,7 +687,7 @@ function renderJobExperience() {
         companyHeader.className = "company-header";
         companyHeader.innerHTML = `
             <div class="company-icon">
-                <i class="fas ${icon}"></i>
+                <i class="fa ${icon}"></i>
             </div>
             <div class="company-info">
                 <div class="company-name">${companyName}</div>
@@ -829,24 +795,21 @@ function updateStatsDisplay(stats) {
     document.getElementById('totalCompanies').textContent = stats.totalCompanies;
 }
 
-// INITIALIZATION
-function initDashboard() {
-    renderCategoryFilters();
-    renderJobExperience();
+function initResumeDash() {
     const stats = calculateStats();
     console.log(stats);
     updateStatsDisplay(stats);
-    createJobsChart();
+    createJobHistoryBarChart();
+    renderCategoryFilters();
+    renderJobExperience();
     createSkillsCharts();
+    createToolsSection();
     createDegreeSection();
     createCerificationsSection();
-    createToolsSection();
 }
 
-// Initialize dashboard when page loads
-document.addEventListener('DOMContentLoaded', initDashboard);
+document.addEventListener('DOMContentLoaded', initResumeDash);
 
-// Handle window resize for responsive charts
 window.addEventListener('resize', function() {
     Plotly.Plots.resize('jobsChart');
     Plotly.Plots.resize('languagesChart');
