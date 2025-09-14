@@ -1,146 +1,227 @@
-const PortfolioFilter = {
-    state: {
-        activeFilters: new Set(),
-        isotopeInstance: null
-    },
+// const PortfolioFilter = {
+//     state: {
+//         activeFilters: new Set(),
+//         isotopeInstance: null
+//     },
 
-    selectors: {
-        wrapper: '.isotopeWrapper',
-        item: '.isotopeItem',
-        portfolioItem: '.portfolio-item',
-        filterPill: '.folio-filter-pill',
-        clearButton: '#clear-folio-filters-btn'
-    },
+//     selectors: {
+//         wrapper: '.isotopeWrapper',
+//         item: '.isotopeItem',
+//         portfolioItem: '.portfolio-item',
+//         filterPill: '.folio-filter-pill',
+//         clearButton: '#clear-folio-filters-btn'
+//     },
 
-    animationOptions: {
-        duration: 1000,
-        easing: 'easeOutQuart',
-        queue: false
-    },
+//     animationOptions: {
+//         duration: 1000,
+//         easing: 'easeOutQuart',
+//         queue: false
+//     },
 
-    // Initialize the portfolio filter system
+//     // Initialize the portfolio filter system
+//     init() {
+//         this.bindFilterHandlers();
+//         this.initIsotopeGrid();
+//     },
+
+//     // Bind global window functions for filter controls
+//     bindFilterHandlers() {
+//         window.togglePortfolioFilter = (category) => this.toggleFilter(category);
+//         window.clearPortfolioFilters = () => this.clearAllFilters();
+//     },
+
+//     // Set up Isotope grid with responsive columns
+//     initIsotopeGrid() {
+//         const $wrapper = $(this.selectors.wrapper);
+//         if (!$wrapper.length) return;
+
+//         const columnCount = parseInt($wrapper.attr('id')) || 1;
+//         const getColumnWidth = () => $wrapper.width() / columnCount;
+
+//         $wrapper.isotope({
+//             itemSelector: this.selectors.item,
+//             resizable: false,
+//             masonry: { columnWidth: getColumnWidth() },
+//             animationOptions: this.animationOptions,
+//             filter: '*' // Show all items initially
+//         });
+        
+//         this.state.isotopeInstance = $wrapper.data('isotope');
+
+//         // Handle responsive layout on window resize
+//         $(window).smartresize(() => {
+//             $wrapper.isotope({
+//                 masonry: { columnWidth: getColumnWidth() }
+//             });
+//         });
+//     },
+
+//     // Toggle a filter category on/off
+//     toggleFilter(category) {
+//         const isActive = this.state.activeFilters.has(category);
+//         if (isActive) {
+//             this.state.activeFilters.delete(category);
+//         } else {
+//             this.state.activeFilters.add(category);
+//         }
+        
+//         this.updateFilterPill(category, !isActive);
+//         this.applyFilters();
+//         this.updateClearButtonVisibility();
+//     },
+
+//     // Remove all active filters
+//     clearAllFilters() {
+//         this.state.activeFilters.clear();
+//         $(this.selectors.filterPill)
+//             .removeClass('active')
+//             .attr('aria-pressed', 'false');
+//         this.applyFilters();
+//         this.updateClearButtonVisibility();
+//     },
+
+//     // Apply current filters to the Isotope grid
+//     applyFilters() {
+//         if (!this.state.isotopeInstance) return;
+
+//         let filterFunction;
+//         console.log(this.state.activeFilters);
+//         console.log('size: ', this.state.activeFilters.size);
+        
+//         if (this.state.activeFilters.size === 0) {
+//             // Show all items when no filters are active
+//             filterFunction = '*';
+//         } else {
+//             // Filter items based on active categories
+//             filterFunction = (itemElement) => {
+//                 const filters = this.extractItemFilters(itemElement);
+//                 // Show item if it has at least one matching filter
+//                 return filters.some(filter => this.state.activeFilters.has(filter));
+//             };
+//         }
+
+//         $(this.selectors.wrapper).isotope({ 
+//             filter: filterFunction,
+//             animationOptions: this.animationOptions
+//         });
+//     },
+
+//     // Extract filter categories from a portfolio item
+//     extractItemFilters(element) {
+//         const $element = $(element);
+        
+//         // Check if the element itself has data-filters
+//         let filterString = $element.attr('data-filters');
+//         console.log('filterString: ', filterString);
+        
+//         // If not, look for a child portfolio-item element
+//         if (!filterString) {
+//             const $portfolioItem = $element.find(this.selectors.portfolioItem);
+//             if ($portfolioItem.length) {
+//                 filterString = $portfolioItem.attr('data-filters');
+//             }
+//         }
+        
+//         // Parse and return filter array
+//         return filterString ? filterString.split(',').map(f => f.trim()) : [];
+//     },
+
+//     // Update visual state of filter pill button
+//     updateFilterPill(category, isActive) {
+//         $(this.selectors.filterPill).each(function() {
+//             if ($(this).text().trim() === category) {
+//                 $(this)
+//                     .toggleClass('active', isActive)
+//                     .attr('aria-pressed', isActive);
+//             }
+//         });
+//     },
+
+//     // Show/hide the clear filters button
+//     updateClearButtonVisibility() {
+//         $(this.selectors.clearButton)
+//             .toggleClass('hidden', this.state.activeFilters.size === 0);
+//     }
+// };
+const PortfolioFilters = {
+    activeFilters: [],
+    $isotope: null,
+
     init() {
-        this.bindFilterHandlers();
-        this.initIsotopeGrid();
+        this.initializeIsotope();
+        this.bindEvents();
     },
 
-    // Bind global window functions for filter controls
-    bindFilterHandlers() {
-        window.togglePortfolioFilter = (category) => this.toggleFilter(category);
-        window.clearPortfolioFilters = () => this.clearAllFilters();
-    },
-
-    // Set up Isotope grid with responsive columns
-    initIsotopeGrid() {
-        const $wrapper = $(this.selectors.wrapper);
-        if (!$wrapper.length) return;
-
-        const columnCount = parseInt($wrapper.attr('id')) || 1;
-        const getColumnWidth = () => $wrapper.width() / columnCount;
-
-        $wrapper.isotope({
-            itemSelector: this.selectors.item,
-            resizable: false,
-            masonry: { columnWidth: getColumnWidth() },
-            animationOptions: this.animationOptions,
-            filter: '*' // Show all items initially
+    initializeIsotope() {
+        this.$isotope = $('#isotopeWrapper').isotope({
+            itemSelector: '.isotope-item',
+            layoutMode: 'fitRows',
+            animationOptions: {
+                duration: 1000,
+                easing: 'easeOutQuart',
+                queue: false
+            }
         });
+    },
+
+    bindEvents() {
+        // Filter button click handler
+        $('.folio-filter-pill').on('click', (e) => {
+            this.handleFilterClick($(e.target));
+        });
+
+        // Clear filters button
+        $('#clear-folio-filters-btn').on('click', () => {
+            this.clearAllFilters();
+        });
+    },
+
+    handleFilterClick($button) {
+        const filter = $button.data('filter');
         
-        this.state.isotopeInstance = $wrapper.data('isotope');
-
-        // Handle responsive layout on window resize
-        $(window).smartresize(() => {
-            $wrapper.isotope({
-                masonry: { columnWidth: getColumnWidth() }
-            });
-        });
-    },
-
-    // Toggle a filter category on/off
-    toggleFilter(category) {
-        const isActive = this.state.activeFilters.has(category);
-        if (isActive) {
-            this.state.activeFilters.delete(category);
+        $button.toggleClass('active');
+        
+        // Update active filters array
+        if ($button.hasClass('active')) {
+            if (!this.activeFilters.includes(filter)) {
+                this.activeFilters.push(filter);
+            }
         } else {
-            this.state.activeFilters.add(category);
+            this.activeFilters = this.activeFilters.filter(f => f !== filter);
         }
         
-        this.updateFilterPill(category, !isActive);
+        // Apply filters with OR logic
         this.applyFilters();
-        this.updateClearButtonVisibility();
+        
+        // Show/hide clear button
+        this.toggleClearButton();
     },
 
-    // Remove all active filters
     clearAllFilters() {
-        this.state.activeFilters.clear();
-        $(this.selectors.filterPill)
-            .removeClass('active')
-            .attr('aria-pressed', 'false');
-        this.applyFilters();
-        this.updateClearButtonVisibility();
+        this.activeFilters = [];
+        $('.folio-filter-pill').removeClass('active');
+        this.$isotope.isotope({ filter: '*' });
+        this.toggleClearButton();
     },
 
-    // Apply current filters to the Isotope grid
     applyFilters() {
-        if (!this.state.isotopeInstance) return;
-
-        let filterFunction;
-        console.log(this.state.activeFilters);
-        console.log('size: ', this.state.activeFilters.size);
-        
-        if (this.state.activeFilters.size === 0) {
+        if (this.activeFilters.length === 0) {
             // Show all items when no filters are active
-            filterFunction = '*';
+            this.$isotope.isotope({ filter: '*' });
         } else {
-            // Filter items based on active categories
-            filterFunction = (itemElement) => {
-                const filters = this.extractItemFilters(itemElement);
-                // Show item if it has at least one matching filter
-                return filters.some(filter => this.state.activeFilters.has(filter));
-            };
+            // Create filter string for OR logic
+            const filterString = this.activeFilters.map(filter => `[data-filters*="${filter}"]`).join(', ');
+            this.$isotope.isotope({ filter: filterString });
         }
-
-        $(this.selectors.wrapper).isotope({ 
-            filter: filterFunction,
-            animationOptions: this.animationOptions
-        });
     },
 
-    // Extract filter categories from a portfolio item
-    extractItemFilters(element) {
-        const $element = $(element);
-        
-        // Check if the element itself has data-filters
-        let filterString = $element.attr('data-filters');
-        console.log('filterString: ', filterString);
-        
-        // If not, look for a child portfolio-item element
-        if (!filterString) {
-            const $portfolioItem = $element.find(this.selectors.portfolioItem);
-            if ($portfolioItem.length) {
-                filterString = $portfolioItem.attr('data-filters');
-            }
+    toggleClearButton() {
+        const $clearButton = $('#clearFilters');
+        if (this.activeFilters.length > 0) {
+            $clearButton.addClass('show');
+        } else {
+            $clearButton.removeClass('show');
         }
-        
-        // Parse and return filter array
-        return filterString ? filterString.split(',').map(f => f.trim()) : [];
-    },
-
-    // Update visual state of filter pill button
-    updateFilterPill(category, isActive) {
-        $(this.selectors.filterPill).each(function() {
-            if ($(this).text().trim() === category) {
-                $(this)
-                    .toggleClass('active', isActive)
-                    .attr('aria-pressed', isActive);
-            }
-        });
-    },
-
-    // Show/hide the clear filters button
-    updateClearButtonVisibility() {
-        $(this.selectors.clearButton)
-            .toggleClass('hidden', this.state.activeFilters.size === 0);
     }
 };
 
@@ -227,7 +308,7 @@ const ResponsiveBanner = {
 const PortfolioApp = {
     // Initialize all portfolio components
     init() {
-        PortfolioFilter.init();
+        PortfolioFilters.init();
         Navigation.init();
         ResponsiveBanner.init();
         this.initFancybox();
