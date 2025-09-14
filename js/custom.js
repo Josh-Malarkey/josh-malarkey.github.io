@@ -22,6 +22,10 @@ var customScripts = {
             $('.navbar-inverse').on('click', 'li a', function () {
                 $('.navbar-inverse .in').addClass('collapse').removeClass('in').css('height', '1px');
             });
+            /* JM: updated filter functions*/
+            $('folio-filter-pill').click(function() {
+                
+            });
             $('#filter a').click(function () {
                 $('#filter a').removeClass('current');
                 $(this).addClass('current');
