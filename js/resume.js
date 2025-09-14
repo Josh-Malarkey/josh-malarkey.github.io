@@ -7,11 +7,11 @@ const RESUME_DATA = {
             "End Month": "Present",
             "Accomplishments": [
                 {
-                    "Description": "Consulted with Executive leadership to implement a company wide OKR framework",
+                    "Description": "Consulted with executive leadership to implement a company wide KPI framework",
                     "Categories": ["Leadership", "Teamwork"]
                 },
                 {
-                    "Description": "Developed a suite of self-service dashboards to automate reporting for client pitches, renewals, and reviews",
+                    "Description": "Created CPC/CPM attribution models demonstrating an average 3X ROAS for campaign spend",
                     "Categories": ["Ownership", "Problem Solving"]
                 },
             ],
@@ -25,15 +25,15 @@ const RESUME_DATA = {
             "End Month": "Mar-2025",
             "Accomplishments": [
                 {
-                    "Description": "Optimized Looker/dbt models to deliver a 7x improvement in load-time for client facing dashboards",
+                    "Description": "Optimized dbt and Looker models to deliver a 7X improvement in load-time for client facing dashboards",
                     "Categories": ["Ownership", "Problem Solving"]
                 },
                 {
-                    "Description": "Implemented fault tolerant data pipelines & data models to reduce average query time by 82%",
+                    "Description": "Implemented fault tolerant data pipelines using dbt and Prefect to ensure >99.5% data accuracy",
                     "Categories": ["Continuous Learning", "Problem Solving"]
                 },
                 {
-                    "Description": "Lead project to develop data product strategy that increased ARR by $450K",
+                    "Description": "Lead project to develop data product strategy contributing $450K in ARR",
                     "Categories": ["Communication", "Leadership"]
                 }
             ],
@@ -47,7 +47,7 @@ const RESUME_DATA = {
             "End Month": "Mar-2022",
             "Accomplishments": [
                 {
-                    "Description": "Optimized T-SQL scripts to improve transaction processing time by 85%",
+                    "Description": "Optimized T-SQL scripts to reduce transaction processing time by 85%",
                     "Categories": ["Continuous Learning", "Problem Solving"]
                 },
                 {
@@ -55,7 +55,7 @@ const RESUME_DATA = {
                     "Categories": ["Communication", "Leadership", "Teamwork"]
                 }
             ],
-            "color": "rgba(25, 100, 126, 0.5)",
+            "color": "rgba(25, 100, 126, 0.6)",
             "icon": "fa-cogs"
         },
         {
@@ -105,7 +105,7 @@ const RESUME_DATA = {
             "End Month": "Mar-2016",
             "Accomplishments": [
                 {
-                    "Description": "Lead project to automate data cleaning workflow reducing new client onboarding timeline from 7 days to 5 days",
+                    "Description": "Lead project to automate data cleaning workflow reducing client onboarding time from 7 to 5 days",
                     "Categories": ["Communication", "Leadership", "Teamwork"]
                 }
             ],
@@ -352,7 +352,7 @@ function createSkillsCharts() {
         type: 'scatterpolar',
         r: technicalValues,
         theta: technicalSkills.map(skill => 
-            skill.length > 15 ? skill.replace(/(.{1,15})\s+/g, '$1<br>') : skill
+            skill.length > 3 ? skill.replace(/(.{1,15})\s+/g, '$1<br>') : skill
         ),
         fill: 'toself',
         name: 'Proficiency Level',
@@ -389,14 +389,11 @@ function createSkillsCharts() {
 function createDegreeSection() {
     const container = document.getElementById('degreeContent');
     let html = '';
-
-    // Add degrees
-
     RESUME_DATA.Education.Degrees.forEach(degree => {
         const duration = `${degree["Start Month"]} - ${degree["End Month"]}`;
         html += `
             <div class="col-md-12">
-                <div class="education-item">
+                <div class="degree-item">
                     <h3>${degree.Degree}</h3>
                     <div class="school">${degree.School}</div>
                     <div class="highlight">${degree["Field of Study"]}</div>
@@ -557,7 +554,7 @@ function createCategoryPill(category, isFilter = false) {
 // Toggle category filter
 function toggleFilter(category) {
     const filterPill = document.querySelector(`.filter-pill.${getCategoryClass(category)}`);
-    
+    console.log(filterPill);
     if (activeFilters.has(category)) {
         activeFilters.delete(category);
         filterPill.classList.remove('active');
@@ -599,6 +596,7 @@ function applyFilters() {
     const jobCards = document.querySelectorAll('.job-card');
     const companies = document.querySelectorAll('.company-container');
     let hasVisibleContent = false;
+    console.log(accomplishments);
     
     if (activeFilters.size === 0) {
         // No filters active - show everything
@@ -677,6 +675,7 @@ function renderJobExperience() {
         const startMonth = firstJob["Start Month"];
         const endMonth = lastJob["End Month"];
         const icon = lastJob.icon || "fa-building";
+        const color = lastJob.color;
         
         // Create company container
         const companyContainer = document.createElement("div");
@@ -686,7 +685,7 @@ function renderJobExperience() {
         const companyHeader = document.createElement("div");
         companyHeader.className = "company-header";
         companyHeader.innerHTML = `
-            <div class="company-icon">
+            <div class="company-icon" style="background:${color}">
                 <i class="fa ${icon}"></i>
             </div>
             <div class="company-info">
