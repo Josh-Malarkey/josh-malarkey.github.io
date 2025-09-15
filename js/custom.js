@@ -1,6 +1,6 @@
 // Custom Script
 // Developed by: Samson.Onna
-// Edited by: Josh Stine
+// Edited by: Josh Malarkey
 var customScripts = {
     profile: function () {
         // portfolio
@@ -21,6 +21,10 @@ var customScripts = {
             });
             $('.navbar-inverse').on('click', 'li a', function () {
                 $('.navbar-inverse .in').addClass('collapse').removeClass('in').css('height', '1px');
+            });
+            /* JM: updated filter functions*/
+            $('folio-filter-pill').click(function() {
+                
             });
             $('#filter a').click(function () {
                 $('#filter a').removeClass('current');
@@ -64,14 +68,13 @@ var customScripts = {
             easing: 'swing',
             begin: function () {
                 //I get fired when the animation is starting
-				
             },
             end: function () {
                 //I get fired when the animation is ending
 				if(!$('#main-nav ul li:first-child').hasClass('active')){
 					$('.header').addClass('addBg');					
 				}else{
-						$('.header').removeClass('addBg');
+                    $('.header').removeClass('addBg');
 				}
 				
             },
@@ -86,23 +89,6 @@ var customScripts = {
             }
         });
     },
-    slider: function () {
-        $('#da-slider').cslider({
-            autoplay: true,
-            bgincrement: 0
-        });
-    },
-    owlSlider: function () {
-        var owl = $("#owl-demo");
-        owl.owlCarousel();
-        // Custom Navigation Events
-        $(".next").click(function () {
-            owl.trigger('owl.next');
-        })
-        $(".prev").click(function () {
-            owl.trigger('owl.prev');
-        })
-    },
     bannerHeight: function () {
         var bHeight = $(".banner-container").height();
         $('#da-slider').height(bHeight);
@@ -110,9 +96,27 @@ var customScripts = {
             var bHeight = $(".banner-container").height();
             $('#da-slider').height(bHeight);
         });
-    }, //TO-DO
-    initObserver: function () {
-
+    },
+    initCircleObserver: function () {
+        // observer that looks for circular skill charts to animate upon the objects intersecting with the view window
+        var observer = new IntersectionObserver(function(entries) {
+            var circles = document.querySelectorAll('.circle');
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // add the circle 'progress' animation if we intersect with the chart wrapper
+                    circles.forEach(cir=> {
+                        cir.classList.add('circle-progress');
+                    });
+                    return;
+                }
+                // otherwise remove the class if we're not interesecting
+                circles.forEach(cir=> {
+                    cir.classList.remove('circle-progress');
+                })
+            });
+        });
+        // observer object observing for the 'circular-chart' class to come into view
+        observer.observe(document.querySelector('.chart-wrapper'));
     },
     init: function () {
         customScripts.onePageNav();
@@ -121,34 +125,10 @@ var customScripts = {
         customScripts.slider();
         customScripts.owlSlider();
         customScripts.bannerHeight();
+        customScripts.initCircleObserver();
     }
 }
 
 $('document').ready(function () {
-    /* Josh code begin */
-    // observer that looks for circular skill charts to animate upon the objects intersecting with the view window
-    var observer = new IntersectionObserver(function(entries) {
-        var circles = document.querySelectorAll('.circle');
-
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // add the circle 'progress' animation if we intersect with the chart wrapper
-                circles.forEach(cir=> {
-                    cir.classList.add('circle-progress');
-                });
-                return;
-            }
-            // otherwise remove the class if we're not interesecting
-            circles.forEach(cir=> {
-                cir.classList.remove('circle-progress');
-            })
-        });
-    });
-
-    // observer object observing for the 'circular-chart' class to come into view
-    observer.observe(document.querySelector('.chart-wrapper'));
-    /* Josh code end */
-
     customScripts.init();
-    
- });
+});

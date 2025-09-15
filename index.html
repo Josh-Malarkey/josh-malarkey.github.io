@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en-gb" class="no-js">
+<html lang="en-us" class="no-js">
 
 <head>
 
@@ -12,11 +12,11 @@
 <link rel="stylesheet" href="css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="css/isotope.css" media="screen" />
 <link rel="stylesheet" href="js/fancybox/jquery.fancybox.css" type="text/css" media="screen" />
-<link rel="stylesheet" type="text/css" href="css/da-slider.css" />
+<link href="css/font-awesome.min.css" rel="stylesheet">
+<!-- <link rel="stylesheet" href="css/resume.css" /> -->
 <link rel="stylesheet" href="css/styles.css" />
 <link rel="icon" href="images/logo.png" type="image/png">
-<!-- Font Awesome -->
-<link href="css/font-awesome.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.26.0/plotly.min.js"></script>
 
 </head>
 
@@ -28,13 +28,12 @@
       <div class="navbar-header">
         <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
         </div>
-      <div id="main-nav" class="collapse navbar-collapse">
-        <ul class="nav navbar-nav" id="mainNav">
+      <div id="main-nav" class="collapse navbar-collapse pull-right">
+        <ul id="mainNav" class="nav navbar-nav pull-right">
           <li class="active"><a href="#home" class="scroll-link">Home</a></li>
           <li><a href="#aboutMe" class="scroll-link">About Me</a></li>
-          <li><a href="#skills" class="scroll-link">Skills</a></li>
+          <li><a href="#resume" class="scroll-link">Resume</a></li>
           <li><a href="#portfolio" class="scroll-link">Portfolio</a></li>
-          <li><a href="#experience" class="scroll-link">Experience</a></li>
           <li><a href="#contactMe" class="scroll-link">Contact</a></li>
           <li><a class="nav-link" href="https://www.linkedin.com/in/josh-malarkey-38370496/" target="_blank"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
           <li><a class="nav-link" href="https://github.com/Josh-Malarkey" target="_blank" rel="noopener"><i class="fa fa-github fa-2x"></i></a></li>
@@ -49,265 +48,315 @@
 <!--/.header-->
 <div id="#top"></div>
 <section id="home">
-  <div class="banner-container"> <img src="images/josh-background.png" alt="banner" />
+  <div class="banner-container">
+    <picture class="banner-container">
+      <source media="(max-width: 768px)" srcset="images/background-mobile-sm.jpg">
+      <source media="(min-width: 769px)" srcset="images/background-desktop-sm.jpg">
+      <img src="images/background-desktop-sm.jpg" alt="banner" />
+    </picture>
     <div class="container banner-content">
       <div class="heroText">
-        <h2><span>Hello, I'm</span><br>Josh
-          </h2>
+        <h2><span>Josh Malarkey</span></h2>
         <span class="caption">Data Scientist | Analytics Engineer</span> </div>
     </div>
   </div>
 </section>
-<section id="introText">
+
+<!--ABOUT ME-->
+<section id="aboutMe" class="secPad">
   <div class="container">
-    <div>
-      <h1>Naturally curious, always learning, and data geek at &#x2764;</h1>
-      <p>For as long as I can remember, I've always been a tinker-er, interested in taking apart gadgets and building things. 
-        Since taking classes for my Undergraduate Economics degree, I developed a keen insight for data analysis which helped me start an
-        analytics career in the finance world. In 2020, I began to pursue my Masters of Science in Data Science at Johns Hopkins University
-        where I learned in leaps and bounds through software engineering, data visualization, and statistical analysis courses.
-        <br><br>
-        This page is a place where I can share my passion projects as an interactive experience. Coding is another hobby of mine which
-        fits naturally with Data Science and Analytics, so maintaining this page helps me develop my front end development skills in pursuit
-        to becoming a Full Stack Scientist &#128521;
-      </p>
-    </div>
-  </div>
-</section>
-<!--About-->
-<section id="aboutMe">
-  <div class="container">
-    <div class="row"> 
-      <!-- item -->
-      <div class="col-md-4 tileBox"> <img src="images/josh.jpg" width="400" height="400" alt="me"/> </div>
-      <div class="col-md-8 tileBox">
-        <div class="txtHead">
-          <h2>I am Josh Malarkey,</h2>
-          <h3>Analytics Professional | Data Scientist | Climate Enthusiast <br> Based in Maryland, US.</h3>
+    <div class="row h-100">
+      <div class="col-sm-5 tileBox d-flex align-items-center"> <img src="images/josh.jpg" alt="me"/> </div>
+      <div class="col-sm-7 d-flex flex-column align-items-center tileBox">
+        <div class="flex-fill txtHead">
+          <h2>Hi, I'm Josh.</h2>
+          <h3>Data & Analytics Professional<br><span>Based in Maryland, US</span></h3>
         </div>
-        <p>In addition to being a data geek, I am also a travel nerd and climate enthusiast. I am a remote working
-          professional with a nomadic lifestyle pattern.
+      </div>
+      <div class="col-sm-7 d-flex flex-column align-items-center tileBox">
+        <p>
+        For as long as I can remember, I've been interested in taking apart gadgets and building things.
+        <br><br>
+        Coding is one hobby of mine which fits naturally with Data Science and Analytics, so this page is a place where I can share my personal projects.
         </p>
       </div>
-      <!-- end: --> 
+      <div class="col-sm-3"></div>
     </div>
   </div>
 </section>
 
-<!--Skills-->
-<section id="skills" class="secPad white">
-  <div class="container">
-    <div class="heading "> 
-      <!-- Heading -->
-      <h2>My Skills</h2>
-      <p>Starting my analytics career in database development gave me a fundamental understanding of how to work with structured data. After working on the back-end side of things for a few years, I dove into the front-end world by taking online web development courses to learn HTML5, CSS, and JavaScript. After taking some time to travel with my then girlfriend, now wife, Molly, I created a <a href="http://worldlywander.com/" target="_blank">website to post our travel blogs and itineraries</a> using Wordpress.</p>
-      <p>During this <em>"professional working hiatus"</em>, I decided to get a better understanding of object oriented programming and began to learn Java and Python. From there, I went into the Masters in Data Science program at Johns Hopkins University where I learned to use Python for data analysis, modeling, scripting, and more. These courses and my professional work experience also gave exposure to various data visualization fundamentals through Dashboarding Software like Looker and Tableau.</p>
-    </div>
-    <!-- Skill Circles -->
-    <div class="flex-wrapper chart-wrapper">
-      <div class="single-chart">
-        <svg viewBox="0 0 36 36" class="circular-chart red">
-          <path class="circle-bg"
-            d="M18 2.0845
-              a 15.9155 15.9155 0 0 1 0 31.831
-              a 15.9155 15.9155 0 0 1 0 -31.831"
-          />
-          <path class="circle"
-            stroke-dasharray="94, 100"
-            d="M18 2.0845
-              a 15.9155 15.9155 0 0 1 0 31.831
-              a 15.9155 15.9155 0 0 1 0 -31.831"
-          />
-          <text x="18" y="17.35" class="skillName">Data Analytics</text>
-          <text x="18" y="22.35" class="skillExp">Exp: 9 Years</text>
-        </svg>
-      </div>
-      <div class="single-chart">
-        <svg viewBox="0 0 36 36" class="circular-chart green">
-          <path class="circle-bg"
-            d="M18 2.0845
-              a 15.9155 15.9155 0 0 1 0 31.831
-              a 15.9155 15.9155 0 0 1 0 -31.831"
-          />
-          <path class="circle"
-            stroke-dasharray="85, 100"
-            d="M18 2.0845
-              a 15.9155 15.9155 0 0 1 0 31.831
-              a 15.9155 15.9155 0 0 1 0 -31.831"
-          />
-          <text x="18" y="17.35" class="skillName">Back End Dev</text>
-          <text x="18" y="22.35" class="skillExp">Exp: 5 Years</text>
-        </svg>
-      </div>
-      <div class="single-chart">
-        <svg viewBox="0 0 36 36" class="circular-chart blue">
-          <path class="circle-bg"
-            d="M18 2.0845
-              a 15.9155 15.9155 0 0 1 0 31.831
-              a 15.9155 15.9155 0 0 1 0 -31.831"
-          />
-          <path class="circle"
-            stroke-dasharray="72, 100"
-            d="M18 2.0845
-              a 15.9155 15.9155 0 0 1 0 31.831
-              a 15.9155 15.9155 0 0 1 0 -31.831"
-          />
-          <text x="18" y="17.35" class="skillName">Front End Dev</text>
-          <text x="18" y="22.35" class="skillExp">Exp: 4 Years</text>
-        </svg>
+<!--RESUME-->
+<section id="resume" class="page-section secPad">
+  <div id="resume-container" class="section container chart-container">
+  <h2 class="chart-title"><i class="fa fa-bar-chart" style="color:rgba(64, 121, 140)"></i> My Resume <i class="fa fa-list-alt" style="color:rgba(64, 121, 140)"></i></h2>
+    <!-- JOBS & ACCOMPLISHMENTS SECTION -->
+    <div id="jobs" class="section container chart-container">
+        <div class="stats-grid">
+          <div class="stat-card">
+              <h3 id="totalYears">-</h3>
+              <p>Years of Experience</p>
+          </div>
+          <div class="stat-card">
+              <h3 id="totalJobs">-</h3>
+              <p>Positions Held</p>
+          </div>
+          <div class="stat-card">
+              <h3 id="totalCompanies">-</h3>
+              <p>Total Employers</p>
+          </div>
+        </div>
+      <div id="jobsChart"></div>
+    
+      <div class="section container">
+        <!-- Category Filter Section -->
+        <div class="category-filter-section">
+            <div class="category-filter-title">🔽 Filter by Soft Skill 🔽</div>
+            <div class="category-filter-row" id="category-filters">
+                <!-- Filter pills will be rendered here by JavaScrip -->
+                <button class="clear-filters hidden" id="clear-filters-btn" onclick="clearAllFilters()">
+                    <i class="fa fa-times"></i> Clear Filters
+                </button>
+            </div>
+        </div>
+        
+        <div id="experience-container">
+            <!-- Job data will be rendered here by JavaScript -->
+        </div>
+        
+        <div class="no-results" id="no-results">
+            <i class="fas fa-search" style="font-size: 48px; margin-bottom: 20px; opacity: 0.3;"></i>
+            <p>No accomplishments match the selected filters.</p>
+            <p style="margin-top: 10px; font-size: 14px;">Try selecting different categories or clear the filters.</p>
+        </div>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-sm-6">
-        <h2>Programming Language & Software</h2>
-        <p class="mrgBtm20">I am most comfortable doing using SQL and have experience coding in several dialects such as Access SQL, Amazon Redshift SQL and T-SQL. Using Python as a scripting language with SQL for ELT/ETL data processing is another strength of mine.</p>
-        <p class="mrgBtm20">My favorite part about Data Science is making it interactive through visualization. I am passionate about creating interesting and engaging visualizations through Dashboards. I have professional experience developing Looker Dashboards and views using LookML. Linked below is a Tableau Dashboard I created showing various Climate Forecast Models.</p>
-        <p class="mrgBtm20">Finally, I am always striving to increase my Web Development skills with HTML5, CSS, and JavaScript. The website you're looking at is a WebThemez template that I downloaded and customized myself for this portfolio page.</p>
-      </div>
-      <!-- Progress Bars -->
-      <div class="col-sm-6"> <br/>
-        <br/>
-        <br/>
-        <div class="row">
-          <div class="col-md-2 skilltitle"><b>SQL</b></div>
-          <div class="col-md-10">
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" aria-valuenow="97" aria-valuemin="0" aria-valuemax="100" style="width: 97%;"> <span class="sr-only"></span> </div>
+    <!-- SKILLS SECTION -->
+    <div id="skills" class="section">
+        <div class="section container chart-container">
+            <h2 class="chart-title">Technical Proficiency</h2>
+            <div class="row">
+                <div class="col-md-12" style="display: block; text-align: center; font-size: small; font-style: italic;">Double click chart to reset</div> 
+                <div class="col-md-6">
+                    <h3 style="text-align: center; margin-bottom: 15px;">Technical Skills</h3>
+                    <div id="technicalChart"></div>
+                </div>
+                <div class="col-md-6">
+                    <h3 style="text-align: center; margin-bottom: 15px;">Languages</h3>
+                    <div id="languagesChart"></div>
+                </div>
             </div>
-          </div>
         </div>
-        <div class="row">
-          <div class="col-md-2 skilltitle"><b>Python</b></div>
-          <div class="col-md-10">
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 95%;"> <span class="sr-only"></span> </div>
-            </div>
-          </div>
+    </div>
+
+    <!-- TOOLS SECTION -->
+    <div id="tools" class="section">
+        <div class="section container chart-container">
+            <h2 class="chart-title">Technical Skills & Tools</h2>
+            <div class="multi-content-grid" id="toolsContent"></div>
         </div>
-        <div class="row">
-          <div class="col-md-2 skilltitle"><b>Looker</b></div>
-          <div class="col-md-10">
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 95%;"> <span class="sr-only"></span> </div>
-            </div>
-          </div>
+    </div>
+
+    <!-- DEGREES SECTION -->
+    <div id="degrees" class="section">
+        <div class="section container chart-container">
+            <h2 class="chart-title">Degrees</h2>
+            <div class="multi-content-grid" id="degreeContent"></div>
         </div>
-        <div class="row">
-          <div class="col-md-2 skilltitle"><b>Tableau</b></div>
-          <div class="col-md-10">
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;"> <span class="sr-only"></span> </div>
-            </div>
-          </div>
+    </div>
+
+    <!-- CERTIFICATIONS SECTION -->
+    <div id="certifications" class="section">
+        <div class="section container chart-container">
+            <h2 class="chart-title">Certifications</h2>
+            <div class="multi-content-grid" id="certContent"></div>
         </div>
-        <div class="row">
-          <div class="col-md-2 skilltitle"><b>Wordpress</b></div>
-          <div class="col-md-10">
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%;"> <span class="sr-only"></span> </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-2 skilltitle"><b>HTML5</b></div>
-          <div class="col-md-10">
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 77%;"> <span class="sr-only"></span> </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-2 skilltitle"><b>JavaScript</b></div>
-          <div class="col-md-10">
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 77%;"> <span class="sr-only"></span> </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-2 skilltitle"><b>CSS</b></div>
-          <div class="col-md-10">
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 72%;"> <span class="sr-only"></span> </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-2 skilltitle"><b>Java</b></div>
-          <div class="col-md-10">
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 72%;"> <span class="sr-only"></span> </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-2 skilltitle"><b>Git</b></div>
-          <div class="col-md-10">
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 72%;"> <span class="sr-only"></span> </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
+</div>
 </section>
 
-<!--Portfolio-->
-<section id="portfolio" class="page-section section appear clearfix secPad">
-  <div class="container">
-    <div class="heading"> 
+<!--PORTFOLIO-->
+<section id="portfolio" class="section">
+  <div class="container chart-container">
       <!-- Heading -->
-      <h2>Portfolio</h2>
-    </div>
+      <h2 class="chart-title">Portfolio</h2>
     <div class="row">
-      <nav id="filter" class="col-md-12">
-        <ul>
-          <li><a href="#" class="btn-theme btn-small portfolio-link current" data-filter="*">All |</a></li>
-          <li><a href="#" class="btn-theme btn-small portfolio-link" data-filter=".data-analysis">Data Analysis |</a></li>
-          <li><a href="#" class="btn-theme btn-small portfolio-link" data-filter=".dashboarding">Dashboarding |</a></li>
-          <li><a href="#" class="btn-theme btn-small portfolio-link" data-filter=".python">Python |</a></li>
-          <li><a href="#" class="btn-theme btn-small portfolio-link" data-filter=".tableau">Tableau |</a></li>
-          <li><a href="#" class="btn-theme btn-small portfolio-link" data-filter=".webdesign">Web Design |</a></li>
-        </ul>
-      </nav>
+      <!-- <div class="col-md-12 category-filter-section" style="justify-content: center;">
+        <div class="category-filter-title">🔽 Filter by Project Type 🔽</div>
+        <div class="category-filter-row" style="align-items: center;" id="category-filters">
+          <span class="category-pill category-data-analysis filter-pill folio-filter-pill" aria-pressed="false" data-filter="analysis">Data Analysis</span>
+          <span class="category-pill category-data-visualization filter-pill folio-filter-pill" aria-pressed="false" data-filters="data-viz">Data Visualization</span>
+          <span class="category-pill category-front-end-design filter-pill folio-filter-pill" aria-pressed="false" data-filters="frontend-design">Frontend Design</span>
+          <button class="clear-filters hidden" id="clear-folio-filters-btn" onclick="clearPortfolioFilters()">
+            <i class="fa fa-times"></i> Clear Filters
+          </button>
+        </div>
+      </div> -->
       <div class="col-md-12">
         <div class="row">
           <div class="portfolio-items isotopeWrapper clearfix" id="3">
-            <article class="col-sm-4 isotopeItem python data-analysis">
-              <div class="portfolio-item"> <img src="images/portfolio/wine_quality_modelling.jpg" alt="" />
-                <div class="portfolio-desc align-center">
+            <div class="col-sm-4 isotope-item" data-filters="analysis">
+                <div class="card">
+                  <a target="_blank" rel= "noopener" href="https://www.kaggle.com/code/joshmalarkey22/wine-quality-classification-modelling">
+                    <img src="images/portfolio/wine_quality_modelling.jpg" class="card-img-top" alt="Predictive Wine Quality Model">
+                    <div class="card-body">
+                        <h3 class="card-title">Predictive Wine Quality Model</h3>
+                        <div class="category-pills">
+                            <span class="category-pill category-data-analysis">Data Analysis</span>
+                        </div>
+                        <div class="card-description">
+                            Kaggle wine dataset analysis and implement the best regression model (Logistic, Ridge, KNN, SVM, Decision Tree) for predicting wine quality using a Python Jupyter Notebook
+                        </div>
+                      </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 isotope-item" data-filters="data-viz, frontend-design">
+                <div class="card">
+                  <a target="_blank" rel= "noopener" href="https://covidvarianttracker.com/">
+                    <img src="images/portfolio/covid_variant_tracker.jpg" class="card-img-top" alt="COVID Variant Tracker">
+                    <div class="card-body">
+                        <h3 class="card-title">COVID Variant Tracker</h3>
+                        <div class="category-pills">
+                            <span class="category-pill category-data-visualization">Data Visualization</span>
+                            <span class="category-pill category-front-end-design">Frontend Design</span>
+                        </div>
+                        <div class="card-description">
+                            A small web app developed using Bootstrap and Plotly to visualize COVID variants over time by country
+                        </div>
+                    </div>
+                  </a>
+                </div>
+            </div>
+            <div class="col-sm-4 isotope-item" data-filters="frontend-design">
+                <div class="card">
+                    <a target="_blank" rel= "noopener" href="http://josh-malarkey.github.io/tic-tac-toe.html">
+                    <img src="images/portfolio/tic-tac-toe.jpg" class="card-img-top" alt="Tic-Tac-Toe">
+                    <div class="card-body">
+                        <h3 class="card-title">Tic-Tac-Toe</h3>
+                        <div class="category-pills">
+                            <span class="category-pill category-front-end-design">Frontend Design</span>
+                        </div>
+                        <div class="card-description">
+                            Play with one or two players. This game uses the minimax search algorithm for one player 'hard' mode which will never lose</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 isotope-item" data-filters="analysis">
+                <div class="card">
+                  <a target="_blank" rel= "noopener" href="https://github.com/josh-malarkey/data-science/blob/main/gh_Iris_Dataset_Analysis.ipynb">
+                    <img src="images/portfolio/iris-all-icon.jpg" class="card-img-top" alt="Iris Exploratory Data Analysis">
+                    <div class="card-body">
+                        <h3 class="card-title">Iris Exploratory Data Analysis</h3>
+                        <div class="category-pills">
+                            <span class="category-pill category-data-analysis">Data Analysis</span>
+                        </div>
+                        <div class="card-description">
+                          Exploratory Data Analysis of the classic Iris dataset using Python within a Jupyter Notebook                 
+                        </div>
+                    </div>
+                  </a>
+                </div>
+            </div>
+            <div class="col-sm-4 isotope-item" data-filters="data-viz">
+                <div class="card">
+                    <a target="_blank" rel= "noopener" href="https://public.tableau.com/app/profile/josh.stine/viz/GlobalGreenhouseGasGHGEmissionsandClimateImpacts/ClimateDashboard">
+                    <img src="images/portfolio/climate-dashboard.jpg" class="card-img-top" alt="Climate Data Tableau Dash">
+                    <div class="card-body">
+                        <h3 class="card-title">Climate Data Tableau Dashboard</h3>
+                        <div class="category-pills">
+                            <span class="category-pill category-data-visualization">Data Visualization</span>
+                        </div>
+                        <div class="card-description">
+                          Greenhouse gas emissions and data extracted/aggregated using Python and visualized via a Tableau Dashboard
+                        </div>
+                      </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 isotope-item" data-filters="frontend-design">
+                <div class="card">
+                   <a target="_blank" rel= "noopener" href="http://worldlywander.com/">
+                    <img src="images/portfolio/worldly-wander.jpg" class="card-img-top" alt="Worldly Wander Website">
+                    <div class="card-body">
+                        <h3 class="card-title">Web Design: Worldly Wander</h3>
+                        <div class="category-pills">
+                            <span class="category-pill category-front-end-design">Frontend Design</span>
+                        </div>
+                        <div class="card-description">
+                           A Wordpress site I set up to document/blog about my travels while learning about the world of web design
+                        </div>
+                    </div>
+                  </a>
+                </div>
+            </div>
+            <!-- <div class="col-sm-4 isotope-item" data-filters="analysis">
+                <div class="card">
+                  <a target="_blank" rel="noopener" href="https://github.com/Josh-Malarkey/data-science/blob/main/EV_EDA_Regression_Modeling/ev_eda_modeling.ipynb">
+                    <img src="images/portfolio/ev-eda.jpg" class="card-img-top" alt="EV Data Analysis">
+                    <div class="card-body">
+                        <h3 class="card-title">EV Data Analysis</h3>
+                        <div class="category-pills">
+                            <span class="category-pill category-data-analysis">Data Analysis</span>
+                        </div>
+                        <div class="card-description">
+                          Exploratory Data Analysis and Linear Regression modelling of Electric Vehicle (EV) data using a Python Jupyter Notebook
+                        </div>
+                    </div>
+                  </a>
+                </div>
+            </div> -->
+            <!-- <div class="col-sm-4 isotope-item" data-filters="analysis">
+                <div class="card">
+                  <a target="_blank" rel= "noopener" href="https://github.com/Josh-Malarkey/data-science/blob/main/gh_MINST_Analysis.ipynb">
+                    <img src="images/portfolio/minst-icon.jpg" class="card-img-top" alt="Image Dataset Analysis">
+                    <div class="card-body">
+                        <h3 class="card-title">MNIST Image Data Analysis</h3>
+                        <div class="category-pills">
+                            <span class="category-pill category-data-analysis">Data Analysis</span>
+                        </div>
+                        <div class="card-description">
+                          Exploratory Data Analysis of the MNIST Image dataset (hand drawn numbers), using image decomposition algorithms within a Python Jupyter Notebook
+                        </div>
+                    </div>
+                  </a>
+                </div>
+            </div> -->
+            <!-- <div class="col-sm-4 isotope-item" data-filters="Data Analysis">
+              <div class="portfolio-item card"> 
+                <img src="images/portfolio/wine_quality_modelling.jpg" alt="" />
+                <div class="card-body">
                   <div class="folio-info"> <a target="_blank" rel= "noopener" href="https://www.kaggle.com/code/joshmalarkey22/wine-quality-classification-modelling">
                     <h5>Regression Modelling</h5>
                     <p>Used various regression modelling methods in Python (Logistic, Ridge, KNN, SVM, Decision Tree) to create and refine a Wine Quality Classification model.</p>
                     <i class="fa fa-plus-square-o fa-2x"></i></a> </div>
                 </div>
               </div>
-            </article>
-            <article class="col-sm-4 isotopeItem webdesign javascript dashboarding">
-              <div class="portfolio-item"> <img src="images/portfolio/covid_variant_tracker.jpg" alt="" />
+            </div> -->
+            <!-- <div class="col-sm-4 isotope-item">
+              <div class="portfolio-item" data-filters="Data Visualization, Frontend Design"> <img src="images/portfolio/covid_variant_tracker.jpg" alt="" />
                 <div class="portfolio-desc align-center">
                   <div class="folio-info"> <a target="_blank" rel= "noopener" href="https://covidvarianttracker.com/">
                     <h5>COVID Variant Tracker</h5>
-                    <p>A small web dashboard with a live data feed showing the change of COVID variants over time by country.</p>
-                    <p>This site was created using a bootstrap framework and is hosted via a 3rd party outside Github.</p>
+                    <p>A small web app developed with bootstrap and Plotly to visualize COVID variants over time by country.</p>
                     <i class="fa fa-plus-square-o fa-2x"></i></a> </div>
                 </div>
               </div>
-            </article>
-            <article class="col-sm-4 isotopeItem tableau dashboarding">
-              <div class="portfolio-item"> <img src="images/portfolio/climate-dashboard.jpg" alt="" />
+            </div> -->
+            <!-- <div class="col-sm-4 isotope-item">
+              <div class="portfolio-item" data-filters="Data Visualization"> <img src="images/portfolio/climate-dashboard.jpg" alt="" />
                 <div class="portfolio-desc align-center">
                   <div class="folio-info"> <a target="_blank" rel= "noopener" href="https://public.tableau.com/app/profile/josh.stine/viz/GlobalGreenhouseGasGHGEmissionsandClimateImpacts/ClimateDashboard">
                     <h5>Climate Forecast Dashboard</h5>
-                    <p>Dashboard created using Tableau. Data extracted and aggregated using Python.</p>
+                    <p>Greenhouse Gas Emissions data extracted/aggregated using Python and visualized via a Tableau Dashboard</p>
                     <i class="fa fa-plus-square-o fa-2x"></i></a> </div>
                 </div>
               </div>
-            </article>
-            <article class="col-sm-4 isotopeItem webdesign javascript">
-              <div class="portfolio-item"> <img src="images/portfolio/tic-tac-toe.jpg" alt="" />
+            </div> -->
+            <!-- <div class="col-sm-4 isotope-item">
+              <div class="portfolio-item" data-filters="Frontend Design"> <img src="images/portfolio/tic-tac-toe.jpg" alt="" />
                 <div class="portfolio-desc align-center">
                   <div class="folio-info"> <a target="_blank" rel= "noopener" href="http://josh-malarkey.github.io/tic-tac-toe.html">
                     <h5>Tic-Tac-Toe</h5>
@@ -316,9 +365,9 @@
                     <i class="fa fa-plus-square-o fa-2x"></i></a> </div>
                 </div>
               </div>
-            </article>
-            <article class="col-sm-4 isotopeItem python data-analysis">
-              <div class="portfolio-item"> <img src="images/portfolio/ev-eda.jpg" alt="">
+            </div> -->
+            <!-- <div class="col-sm-4 isotope-item">
+              <div class="portfolio-item" data-filters="Data Analysis"> <img src="images/portfolio/ev-eda.jpg" alt="">
                 <div class="portfolio-desc align-center">
                   <div class="folio-info"> <a target="_blank" rel="noopener" href="https://github.com/Josh-Malarkey/data-science/blob/main/EV_EDA_Regression_Modeling/ev_eda_modeling.ipynb">
                     <h5>Regression Modeling: EV Data</h5>
@@ -327,9 +376,9 @@
                     <i class="fa fa-plus-square-o fa-2x"></i></a> </div>
                 </div>
               </div>
-            </article>
-            <article class="col-sm-4 isotopeItem python data-analysis">
-              <div class="portfolio-item"> <img src="images/portfolio/iris-all-icon.jpg" alt="" />
+            </div> -->
+            <!-- <div class="col-sm-4 isotope-item">
+              <div class="portfolio-item" data-filters="Data Analysis"> <img src="images/portfolio/iris-all-icon.jpg" alt="" />
                 <div class="portfolio-desc align-center">
                   <div class="folio-info"> <a target="_blank" rel= "noopener" href="https://github.com/josh-malarkey/data-science/blob/main/gh_Iris_Dataset_Analysis.ipynb">
                     <h5>Iris Dataset EDA</h5>
@@ -337,9 +386,9 @@
                     <i class="fa fa-plus-square-o fa-2x"></i></a> </div>
                 </div>
               </div>
-            </article>
-            <article class="col-sm-4 isotopeItem webdesign">
-              <div class="portfolio-item"> <img src="images/portfolio/worldly-wander.jpg" alt="" />
+            </div> -->
+            <!-- <div class="col-sm-4 isotope-item">
+              <div class="portfolio-item" data-filters="Frontend Design"> <img src="images/portfolio/worldly-wander.jpg" alt="" />
                 <div class="portfolio-desc align-center">
                   <div class="folio-info"> <a target="_blank" rel= "noopener" href="http://worldlywander.com/">
                     <h5>Worldly Wander</h5>
@@ -347,9 +396,9 @@
                     <i class="fa fa-plus-square-o fa-2x"></i></a> </div>
                 </div>
               </div>
-            </article>
-            <article class="col-sm-4 isotopeItem python data-analysis">
-              <div class="portfolio-item"> <img src="images/portfolio/minst-icon.jpg" alt="" />
+            </div> -->
+            <!-- <div class="col-sm-4 isotope-item">
+              <div class="portfolio-item" data-filters="Data Analysis"> <img src="images/portfolio/minst-icon.jpg" alt="" />
                 <div class="portfolio-desc align-center">
                   <div class="folio-info"> <a target="_blank" rel= "noopener" href="https://github.com/Josh-Malarkey/data-science/blob/main/gh_MINST_Analysis.ipynb">
                     <h5>Image Dataset Analysis</h5>
@@ -357,97 +406,12 @@
                     <i class="fa fa-plus-square-o fa-2x"></i></a> </div>
                 </div>
               </div>
-            </article>
+            </div> -->
           </div>
         </div>
       </div>
     </div>
   </div>
-</section>
-<!--Experience-->
-<section id="experience" class="secPad">
-  <div class="container">
-    <div class="heading">
-      <!-- Heading -->
-      <h2>Experience</h2>
-      <br />
-      <p>This site is mainly for highlighting my personal coding projects hosted on github or other sites. Sometimes
-        these projects overlap with my <em>"career"</em>
-        interests so here is a brief history of my recent work experience. For a full breakdown of my professional
-        experience,
-        <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/josh-malarkey-38370496/">please check out
-          my LinkedIn page</a>.
-      </p>
-    </div>
-    <div class="row experience-details">
-      <div class="col-md-6">
-        <div class="col-md-5">
-          <div class="icon-block"><i class="fa fa-glass"></i></div>
-          <div class="pull-left">
-            <h5>Vivino</h5>
-            <h4>Analytics Manager</h4>
-            <span>2022 - Present</span>
-          </div>
-        </div>
-        <div class="col-md-7 pull-right experience-detail-description">
-          <ul>
-            <li>Utilized BI Tools (Looker, Tableau, etc.) to generate actionable insights for global wine brands</li>
-            <li>Built ELT/ETL pipelines using AWS, dbt, Prefect, Python, and SQL</li>
-            <li>Translated complex technical analyses for clients as easy-to-digest presentations</li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="col-md-5">
-          <div class="icon-block"><i class="fa fa-cogs"></i></div>
-          <div class="pull-left">
-            <h5>Computershare</h5>
-            <h4>Senior Analyst</h4>
-            <span>2019 - 2022</span>
-          </div>
-        </div>
-        <div class="col-md-7 pull-right experience-detail-description">
-          <ul>
-            <li>Technology Coordinator for multiple database and web reporting systems (Access, SQL Server, Qlik, etc.)</li>
-            <li>Used Python and SQL to aggregate, transform, and visualize data</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="row experience-details">
-      <div class="col-md-6">
-        <div class="col-md-5">
-          <div class="icon-block"><i class="fa fa-laptop"></i></div>
-          <div class="pull-left">
-            <h5>Worldly Wander</h5>
-            <h4>Web Designer</h4>
-            <span>2018 - 2019</span>
-          </div>
-        </div>
-        <div class="col-md-7 pull-right experience-detail-description">
-          <ul>
-            <li>Working hiatus; gained working knowledge of front-end coding languages and frameworks (Bootstrap, HTML, CSS, JavaScript, Wordpress)</li>
-            <li>Used tools to analyze web traffic and improve content for SEO</li>
-          </ul></div>
-      </div>
-      <div class="col-md-6">
-        <div class="col-md-5">
-          <div class="icon-block"><i class="fa fa-home"></i></div>
-          <div class="pull-left">
-            <h5>Wells Fargo</h5>
-            <h4>Analyst &#8594 Consultant</h4>
-            <span>2015 - 2018</span>
-          </div>
-        </div>
-        <div class="col-md-7 pull-right experience-detail-description">
-          <ul>
-            <li>Supported multiple operations teams with database and data warehouse design</li>
-            <li>Collaborated with data engineers to develop data schemas and pipelines</li>
-            <li>Demonstrated data-storytelling capabilities by explaining complex analyses to non-technical audiences</li>
-          </ul>
-        </div>
-      </div>
-    </div>
 </section>
 
 <!--Contact -->
@@ -455,18 +419,14 @@
   <div class="container">
     <div class="row">
       <div class="heading"> 
-        <!-- Heading -->
         <h2>Feel free to reach out!</h2>
         <p>Thank you for checking out my portfolio page. If you would like to get into contact with me, please fill out the form below.</p>
         <p><em><b>*Email is needed if you would like me to be able to reply :D</b></em></p>
       </div>
     </div>
     <div class="row mrgn30">
-
-      <!-- Formspree.io HTML; modify this form HTML and place wherever you want your form -->
-      <!-- <form action="https://formspree.io/f/xbjwvlzl" method="POST"-->
-      <!--Default Submit Form (doesn't actually do anything until the action/method is added)-->
-      <form method="post" action="https://formspree.io/f/xbjwvlzl" method="POST" id="contactfrm" role="form">
+      <!-- old formspree endpoint: "https://formspree.io/f/xbjwvlzl" -->
+      <form method="post" action="https://formspree.io/f/mdkdjwkw" method="POST" id="contactfrm" role="form">
         <div class="col-sm-4">
           <div class="form-group">
             <label for="name">Name:</label>
@@ -488,18 +448,15 @@
       </form>
     </div>
   </div>
-  <!--/.container--> 
 </section>
 
-<!--/.page-section-->
 <footer class="copyright">
   <div class="container">
     <div class="row">
       <div class="col-md-6">
       </div>
-      <div class="col-md-6"> <span class="pull-right">Copyright 2014 | All Rights Reserved  -- Template by <a href="http://webThemez.com">WebThemez.com</a></span> </div>
+      <div class="col-md-6"> <span class="pull-right">Copyright <script>document.write(new Date().getFullYear())</script> Josh Malarkey | Template by <a href="http://webThemez.com">WebThemez.com</a></span> </div>
     </div>
-    <!-- / .row --> 
   </div>
 </footer>
 <a href="#top" class="topHome"><i class="fa fa-chevron-up fa-2x"></i></a> 
@@ -507,6 +464,7 @@
 <script src="js/bootstrap.min.js" type="text/javascript"></script> 
 <script src="js/jquery.isotope.min.js" type="text/javascript"></script> 
 <script src="js/jquery.nav.js" type="text/javascript"></script> 
-<script src="js/custom.js" type="text/javascript"></script> 
+<script src="js/script.js" type="text/javascript"></script> 
+<script src="js/resume.js" type="text/javascript"></script>
 </body>
 </html>
