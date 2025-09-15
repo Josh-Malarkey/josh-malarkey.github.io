@@ -424,7 +424,7 @@ box-shadow: 0px 3px 4px 0px rgba(50, 50, 50, 0.38);
 	color: #5E5E5E;
 }
 .tileBox p {
-	display: flex;
+	display: block;
 	align-items: center;
 	justify-content: center;
 	background-color: #f0f0f0;
@@ -1059,8 +1059,9 @@ footer {
 }
 
 .company-duration {
-    font-size: 1.5rem;
-    color: #7f8c8d;
+    font-size: 1.7rem;
+	font-style: italic;
+    color: #2c3e50;
 }
 
 .job-cards {
@@ -1094,9 +1095,8 @@ footer {
 }
 
 .job-duration {
-    font-size: 1.5rem;
-    font-effect: emphasize;
-    color: #7f8c8d;
+    font-size: 1.6rem;
+    color: #353535;
     margin-bottom: 15px;
     display: block;
 }
