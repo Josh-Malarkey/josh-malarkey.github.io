@@ -209,7 +209,16 @@ function calculateDuration(startDate, endDate) {
 
 function skillToNumber(skill) {
     const mapping = {
-        'Beginner': 1, 'Basic': 2, 'Intermediate': 3, 'Advanced': 4, 'Expert': 5
+        'Beginner': 1, 
+        'Basic': 2, 
+        'Intermediate': 3,
+        'Intmd.': 3,
+        'Int.': 3, 
+        'Int': 3,
+        'Advanced': 4,
+        'Adv.': 4,
+        'Adv': 4, 
+        'Expert': 5
     };
     return mapping[skill] || 0;
 }
@@ -260,13 +269,34 @@ function createJobHistoryBarChart() {
         const jobs = companiesMap[company].sort((a, b) => parseDate(a.startDate) - parseDate(b.startDate));
         
         jobs.forEach((job, jobIndex) => {
+            const formatTitle = (title) => {
+                if (title.length <= 10) return title;
+                
+                const words = title.split(' ');
+                if (words.length === 1) return title; // Single word > 10 chars stays on one line
+                
+                const result = [];
+                let currentLine = words[0];
+                
+                for (let i = 1; i < words.length; i++) {
+                    if ((currentLine + ' ' + words[i]).length <= 10) {
+                    currentLine += ' ' + words[i];
+                    } else {
+                    result.push(currentLine);
+                    currentLine = words[i];
+                    }
+                }
+                result.push(currentLine);
+                
+                return result.join('<br>');
+            };
             traces.push({
                 x: [job.duration],
                 y: [company],
                 type: 'bar',
                 orientation: 'h',
                 name: job.title,
-                text: `${job.title}<br>${job.duration.toFixed(1)} years<br>`,
+                text: `${formatTitle(job.title)}<br>${job.duration.toFixed(1)} years<br>`,
                 textposition: 'inside',
                 marker: {
                     color: colors[companyIndex % colors.length],
@@ -328,7 +358,8 @@ function createSkillsCharts() {
                 visible: true,
                 range: [0, 5],
                 tickvals: [1, 2, 3, 4, 5],
-                ticktext: ['Beginner', 'Basic', 'Intermediate', 'Advanced', 'Expert'],
+                tickfont: { size: 10 },
+                ticktext: ['Beginner', 'Basic', 'Intmd.', 'Advanced', 'Expert'],
                 color: '#535353',
                 gridcolor: "#ecf0f1",
                 tickcolor: "#ecf0f1",
@@ -366,7 +397,8 @@ function createSkillsCharts() {
                 visible: true,
                 range: [0, 5],
                 tickvals: [1, 2, 3, 4, 5],
-                ticktext: ['Beginner', 'Basic', 'Intermediate', 'Advanced', 'Expert'],
+                tickfont: { size: 10 },
+                ticktext: ['Beginner', 'Basic', 'Intmd.', 'Advanced', 'Expert'],
                 gridcolor: "#ecf0f1",
                 tickcolor: "#ecf0f1",
                 linecolor: "#929292",
