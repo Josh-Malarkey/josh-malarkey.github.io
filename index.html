@@ -110,7 +110,7 @@
       <div class="section container">
         <!-- Category Filter Section -->
         <div class="category-filter-section">
-            <div class="category-filter-title">🔽 Filter by Soft Skill 🔽</div>
+            <div class="category-filter-title">Filter by Soft Skill</div>
             <div class="category-filter-row" id="category-filters">
                 <!-- Filter pills will be rendered here by JavaScrip -->
                 <button class="clear-filters hidden" id="clear-filters-btn" onclick="clearAllFilters()">
@@ -177,11 +177,10 @@
 </section>
 
 <!--PORTFOLIO-->
-<section id="portfolio" class="section">
+<section id="portfolio" class="section portfolio-section">
   <div class="container chart-container">
       <!-- Heading -->
       <h2 class="chart-title">Portfolio</h2>
-    <div class="row">
       <!-- <div class="col-md-12 category-filter-section" style="justify-content: center;">
         <div class="category-filter-title">🔽 Filter by Project Type 🔽</div>
         <div class="category-filter-row" style="align-items: center;" id="category-filters">
@@ -193,110 +192,109 @@
           </button>
         </div>
       </div> -->
-      <div class="col-md-12">
-        <div class="row">
-          <div class="portfolio-items isotopeWrapper clearfix" id="3">
-            <div class="col-sm-4 isotope-item" data-filters="analysis">
-                <div class="card">
-                  <a target="_blank" rel= "noopener" href="https://www.kaggle.com/code/joshmalarkey22/wine-quality-classification-modelling">
-                    <img src="images/portfolio/wine_quality_modelling.jpg" class="card-img-top" alt="Predictive Wine Quality Model">
-                    <div class="card-body">
-                        <h4 class="card-title">Predictive Wine Quality Model</h4>
-                        <div class="category-pills">
-                            <span class="category-pill category-data-analysis">Data Analysis</span>
-                        </div>
-                        <div class="card-description">
-                            Kaggle wine dataset analysis and implement the best regression model (Logistic, Ridge, KNN, SVM, Decision Tree) for predicting wine quality using a Python Jupyter Notebook
-                        </div>
-                      </a>
+      <div class="card-grid">
+            <!-- <div class="col-sm-4 isotope-item" data-filters="analysis"> -->
+              <div class="card">
+                <a target="_blank" rel= "noopener" href="https://www.kaggle.com/code/joshmalarkey22/wine-quality-classification-modelling">
+                  <div class="card-content">
+                    <h3 class="card-title">Predictive Wine Quality Model</h3>
+                    <div class="card-description">
+                        Exploratory analysis, and regression model implementation/evaluation (Logistic, Ridge, KNN, SVM, Decision Tree) to predict wine quality; dataset via Kaggle
                     </div>
-                </div>
-            </div>
-            <div class="col-sm-4 isotope-item" data-filters="data-viz, frontend-design">
-                <div class="card">
-                  <a target="_blank" rel= "noopener" href="https://covidvarianttracker.com/">
-                    <img src="images/portfolio/covid_variant_tracker.jpg" class="card-img-top" alt="COVID Variant Tracker">
-                    <div class="card-body">
-                        <h4 class="card-title">COVID Variant Tracker</h4>
-                        <div class="category-pills">
-                            <span class="category-pill category-data-visualization">Data Visualization</span>
+                    <div class="category-pills">
+                        <span class="category-pill category-data-analysis">Data Analysis</span>
+                    </div>
+                  </div>
+                  <img src="images/portfolio/wine_quality_modelling.jpg" class="card-image" alt="Predictive Wine Quality Model">
+                </a>
+              </div>
+            <!-- </div> -->
+            <!-- <div class="col-sm-4 isotope-item" data-filters="data-viz, frontend-design"> -->
+              <div class="card">
+                <a target="_blank" rel= "noopener" href="https://covidvarianttracker.com">
+                  <div class="card-content">
+                      <h3 class="card-title">COVID Variant Tracker</h3>
+                    <div class="card-description">
+                        A small web app developed using Bootstrap and Plotly to visualize COVID variants over time by country
+                    </div>
+                    <div class="category-pills">
+                        <span class="category-pill category-data-visualization">Data Visualization</span>
                             <span class="category-pill category-front-end-design">Frontend Design</span>
-                        </div>
-                        <div class="card-description">
-                            A small web app developed using Bootstrap and Plotly to visualize COVID variants over time by country
-                        </div>
                     </div>
-                  </a>
-                </div>
-            </div>
-            <div class="col-sm-4 isotope-item" data-filters="frontend-design">
-                <div class="card">
-                    <a target="_blank" rel= "noopener" href="http://josh-malarkey.github.io/tic-tac-toe.html">
-                    <img src="images/portfolio/tic-tac-toe.jpg" class="card-img-top" alt="Tic-Tac-Toe">
-                    <div class="card-body">
-                        <h4 class="card-title">Tic-Tac-Toe</h4>
-                        <div class="category-pills">
-                            <span class="category-pill category-front-end-design">Frontend Design</span>
-                        </div>
-                        <div class="card-description">
-                            Play with one or two players. This game uses the minimax search algorithm for one player 'hard' mode which will never lose</p>
-                        </div>
+                  </div>
+                  <img src="images/portfolio/covid_variant_tracker.jpg" class="card-image" alt="COVID Variant Tracker">
+                </a>
+              </div>
+            <!-- </div> -->
+            <!-- <div class="col-sm-4 isotope-item" data-filters="frontend-design"> -->
+              <div class="card">
+                <a target="_blank" rel= "noopener" href="http://josh-malarkey.github.io/tic-tac-toe.html">
+                  <div class="card-content">
+                      <h3 class="card-title">Tic-Tac-Toe</h3>
+                    <div class="card-description">
+                        Play with one or two players. This game uses the minimax search algorithm for one player 'hard' mode which will never lose</p>
                     </div>
-                </div>
-            </div>
-            <div class="col-sm-4 isotope-item" data-filters="analysis">
+                    <div class="category-pills">
+                        <span class="category-pill category-front-end-design">Frontend Design</span>
+                    </div>
+                  </div>
+                  <img src="images/portfolio/tic-tac-toe.jpg" class="card-image" alt="Tic-Tac-Toe">
+                </a>
+              </div>
+            <!-- </div> -->
+            <!-- <div class="col-sm-4 isotope-item" data-filters="analysis"> -->
                 <div class="card">
                   <a target="_blank" rel= "noopener" href="https://github.com/josh-malarkey/data-science/blob/main/gh_Iris_Dataset_Analysis.ipynb">
-                    <img src="images/portfolio/iris-all-icon.jpg" class="card-img-top" alt="Iris Exploratory Data Analysis">
-                    <div class="card-body">
-                        <h4 class="card-title">Iris Exploratory Data Analysis</h4>
-                        <div class="category-pills">
-                            <span class="category-pill category-data-analysis">Data Analysis</span>
-                        </div>
-                        <div class="card-description">
-                          Exploratory Data Analysis of the classic Iris dataset using Python within a Jupyter Notebook                 
-                        </div>
+                  <div class="card-content">
+                      <h3 class="card-title">Iris Exploratory Data Analysis</h3>
+                    <div class="card-description">
+                        Exploratory Data Analysis of the classic Iris dataset using Python within a Jupyter Notebook                 
                     </div>
-                  </a>
-                </div>
-            </div>
-            <div class="col-sm-4 isotope-item" data-filters="data-viz">
+                    <div class="category-pills">
+                        <span class="category-pill category-data-analysis">Data Analysis</span>
+                    </div>
+                  </div>
+                  <img src="images/portfolio/iris-all-icon.jpg" class="card-image" alt="Iris EDA">
+                </a>
+              </div>
+            <!-- </div> -->
+            <!-- <div class="col-sm-4 isotope-item" data-filters="data-viz"> -->
                 <div class="card">
-                    <a target="_blank" rel= "noopener" href="https://public.tableau.com/app/profile/josh.stine/viz/GlobalGreenhouseGasGHGEmissionsandClimateImpacts/ClimateDashboard">
-                    <img src="images/portfolio/climate-dashboard.jpg" class="card-img-top" alt="Climate Data Tableau Dash">
-                    <div class="card-body">
-                        <h4 class="card-title">Climate Data Tableau Dashboard</h4>
-                        <div class="category-pills">
-                            <span class="category-pill category-data-visualization">Data Visualization</span>
-                        </div>
-                        <div class="card-description">
-                          Greenhouse gas emissions and data extracted/aggregated using Python and visualized via a Tableau Dashboard
-                        </div>
-                      </a>
+                  <a target="_blank" rel= "noopener" href="https://public.tableau.com/app/profile/josh.stine/viz/GlobalGreenhouseGasGHGEmissionsandClimateImpacts/ClimateDashboard">
+                  <div class="card-content">
+                      <h3 class="card-title">Climate Data Tableau Dashboard</h3>
+                    <div class="card-description">
+                        Exploratory Data Analysis of the classic Iris dataset using Python within a Jupyter Notebook                 
                     </div>
-                </div>
-            </div>
-            <div class="col-sm-4 isotope-item" data-filters="frontend-design">
+                    <div class="category-pills">
+                        <span class="category-pill category-data-visualization">Data Visualization</span>
+                    </div>
+                  </div>
+                  <img src="images/portfolio/climate-dashboard.jpg" class="card-image" alt="Climate Data Tableau Dashboard">
+                </a>
+              </div>
+            <!-- </div> -->
+            <!-- <div class="col-sm-4 isotope-item" data-filters="frontend-design"> -->
                 <div class="card">
-                   <a target="_blank" rel= "noopener" href="http://worldlywander.com/">
-                    <img src="images/portfolio/worldly-wander.jpg" class="card-img-top" alt="Worldly Wander Website">
-                    <div class="card-body">
-                        <h4 class="card-title">Web Design: Worldly Wander</h4>
-                        <div class="category-pills">
-                            <span class="category-pill category-front-end-design">Frontend Design</span>
-                        </div>
-                        <div class="card-description">
-                           A Wordpress site I set up to document/blog about my travels while learning about the world of web design
-                        </div>
+                  <a target="_blank" rel= "noopener" href="http://worldlywander.com/">
+                  <div class="card-content">
+                      <h3 class="card-title">Worldly Wander Blog</h3>
+                    <div class="card-description">
+                        A Wordpress site I set up to document/blog about my travels while learning about the world of web design
                     </div>
-                  </a>
-                </div>
-            </div>
+                    <div class="category-pills">
+                        <span class="category-pill category-front-end-design">Frontend Design</span>
+                    </div>
+                  </div>
+                  <img src="images/portfolio/worldly-wander.jpg" class="card-img-top" alt="Worldly Wander Blog">
+                </a>
+              </div>
+            <!-- </div> -->
             <!-- <div class="col-sm-4 isotope-item" data-filters="analysis">
                 <div class="card">
                   <a target="_blank" rel="noopener" href="https://github.com/Josh-Malarkey/data-science/blob/main/EV_EDA_Regression_Modeling/ev_eda_modeling.ipynb">
                     <img src="images/portfolio/ev-eda.jpg" class="card-img-top" alt="EV Data Analysis">
-                    <div class="card-body">
+                    <div class="card-content">
                         <h3 class="card-title">EV Data Analysis</h3>
                         <div class="category-pills">
                             <span class="category-pill category-data-analysis">Data Analysis</span>
@@ -312,7 +310,7 @@
                 <div class="card">
                   <a target="_blank" rel= "noopener" href="https://github.com/Josh-Malarkey/data-science/blob/main/gh_MINST_Analysis.ipynb">
                     <img src="images/portfolio/minst-icon.jpg" class="card-img-top" alt="Image Dataset Analysis">
-                    <div class="card-body">
+                    <div class="card-content">
                         <h3 class="card-title">MNIST Image Data Analysis</h3>
                         <div class="category-pills">
                             <span class="category-pill category-data-analysis">Data Analysis</span>
@@ -324,93 +322,7 @@
                   </a>
                 </div>
             </div> -->
-            <!-- <div class="col-sm-4 isotope-item" data-filters="Data Analysis">
-              <div class="portfolio-item card"> 
-                <img src="images/portfolio/wine_quality_modelling.jpg" alt="" />
-                <div class="card-body">
-                  <div class="folio-info"> <a target="_blank" rel= "noopener" href="https://www.kaggle.com/code/joshmalarkey22/wine-quality-classification-modelling">
-                    <h5>Regression Modelling</h5>
-                    <p>Used various regression modelling methods in Python (Logistic, Ridge, KNN, SVM, Decision Tree) to create and refine a Wine Quality Classification model.</p>
-                    <i class="fa fa-plus-square-o fa-2x"></i></a> </div>
-                </div>
-              </div>
-            </div> -->
-            <!-- <div class="col-sm-4 isotope-item">
-              <div class="portfolio-item" data-filters="Data Visualization, Frontend Design"> <img src="images/portfolio/covid_variant_tracker.jpg" alt="" />
-                <div class="portfolio-desc align-center">
-                  <div class="folio-info"> <a target="_blank" rel= "noopener" href="https://covidvarianttracker.com/">
-                    <h5>COVID Variant Tracker</h5>
-                    <p>A small web app developed with bootstrap and Plotly to visualize COVID variants over time by country.</p>
-                    <i class="fa fa-plus-square-o fa-2x"></i></a> </div>
-                </div>
-              </div>
-            </div> -->
-            <!-- <div class="col-sm-4 isotope-item">
-              <div class="portfolio-item" data-filters="Data Visualization"> <img src="images/portfolio/climate-dashboard.jpg" alt="" />
-                <div class="portfolio-desc align-center">
-                  <div class="folio-info"> <a target="_blank" rel= "noopener" href="https://public.tableau.com/app/profile/josh.stine/viz/GlobalGreenhouseGasGHGEmissionsandClimateImpacts/ClimateDashboard">
-                    <h5>Climate Forecast Dashboard</h5>
-                    <p>Greenhouse Gas Emissions data extracted/aggregated using Python and visualized via a Tableau Dashboard</p>
-                    <i class="fa fa-plus-square-o fa-2x"></i></a> </div>
-                </div>
-              </div>
-            </div> -->
-            <!-- <div class="col-sm-4 isotope-item">
-              <div class="portfolio-item" data-filters="Frontend Design"> <img src="images/portfolio/tic-tac-toe.jpg" alt="" />
-                <div class="portfolio-desc align-center">
-                  <div class="folio-info"> <a target="_blank" rel= "noopener" href="http://josh-malarkey.github.io/tic-tac-toe.html">
-                    <h5>Tic-Tac-Toe</h5>
-                    <p>Play Tic-Tac-Toe against another person or an AI with 2 different settings.</p>
-                    <p>The 'hard' AI setting uses the minimax search algorithm so it will never lose.</p>
-                    <i class="fa fa-plus-square-o fa-2x"></i></a> </div>
-                </div>
-              </div>
-            </div> -->
-            <!-- <div class="col-sm-4 isotope-item">
-              <div class="portfolio-item" data-filters="Data Analysis"> <img src="images/portfolio/ev-eda.jpg" alt="">
-                <div class="portfolio-desc align-center">
-                  <div class="folio-info"> <a target="_blank" rel="noopener" href="https://github.com/Josh-Malarkey/data-science/blob/main/EV_EDA_Regression_Modeling/ev_eda_modeling.ipynb">
-                    <h5>Regression Modeling: EV Data</h5>
-                    <p>Exploratory Data Analysis and Linear Regression modeling of Electric Vehicle (EV) Data using Python within a Jupyter Notebook.</p>
-                    <p>Through EDA, several variables are used to build a model to estimate price of the EV.</p>                    
-                    <i class="fa fa-plus-square-o fa-2x"></i></a> </div>
-                </div>
-              </div>
-            </div> -->
-            <!-- <div class="col-sm-4 isotope-item">
-              <div class="portfolio-item" data-filters="Data Analysis"> <img src="images/portfolio/iris-all-icon.jpg" alt="" />
-                <div class="portfolio-desc align-center">
-                  <div class="folio-info"> <a target="_blank" rel= "noopener" href="https://github.com/josh-malarkey/data-science/blob/main/gh_Iris_Dataset_Analysis.ipynb">
-                    <h5>Iris Dataset EDA</h5>
-                    <p>Exploratory Data Analysis of the classic Iris dataset using Python within a Jupyter Notebook.</p>                    
-                    <i class="fa fa-plus-square-o fa-2x"></i></a> </div>
-                </div>
-              </div>
-            </div> -->
-            <!-- <div class="col-sm-4 isotope-item">
-              <div class="portfolio-item" data-filters="Frontend Design"> <img src="images/portfolio/worldly-wander.jpg" alt="" />
-                <div class="portfolio-desc align-center">
-                  <div class="folio-info"> <a target="_blank" rel= "noopener" href="http://worldlywander.com/">
-                    <h5>Worldly Wander</h5>
-                    <p>A Wordpress site I set up to document/blog about my travels while learning about the world of web design.</p>
-                    <i class="fa fa-plus-square-o fa-2x"></i></a> </div>
-                </div>
-              </div>
-            </div> -->
-            <!-- <div class="col-sm-4 isotope-item">
-              <div class="portfolio-item" data-filters="Data Analysis"> <img src="images/portfolio/minst-icon.jpg" alt="" />
-                <div class="portfolio-desc align-center">
-                  <div class="folio-info"> <a target="_blank" rel= "noopener" href="https://github.com/Josh-Malarkey/data-science/blob/main/gh_MINST_Analysis.ipynb">
-                    <h5>Image Dataset Analysis</h5>
-                    <p>Exploratory Data Analysis of the MNIST Image dataset, using Python image decomposition algorithms to detect differences between hand drawn numbers within a Jupyter Notebook.</p>                    
-                    <i class="fa fa-plus-square-o fa-2x"></i></a> </div>
-                </div>
-              </div>
-            </div> -->
           </div>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
