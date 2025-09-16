@@ -577,8 +577,7 @@ box-shadow: 0px 3px 4px 0px rgba(50, 50, 50, 0.38);
 	margin-top: 20px;
 }
 
-/* Portfolio - New Nav + Filters */
-
+/* Portfolio */
 .folio-filter-pill {
     font-size: 14px;
     padding: 8px 16px;
@@ -614,72 +613,86 @@ box-shadow: 0px 3px 4px 0px rgba(50, 50, 50, 0.38);
 	gap: 20px;
 }
 
+.card-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 25px;
+	align-items: start;
+}
+
 .card {
-	border: none;
-	border-radius: 15px;
-	overflow: hidden;
-	box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-	transition: all 0.4s ease;
-	position: relative;
 	background: white;
+	border-radius: 16px;
+	overflow: hidden;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+	transition: all 0.3s ease;
+	border: 1px solid #e8ecf4;
+	display: flex;
+	flex-direction: column;
 }
 
 .card:hover {
-	transform: translateY(-10px);
-	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+	transform: translateY(-8px);
+	box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
 }
 
-.card-img-top {
-	height: 300px;
-	object-fit: cover;
-	transition: transform 0.4s ease;
-}
-
-.card:hover .card-img-top {
-	transform: scale(1.05);
-}
-
-.card-body {
-	padding: 1.5rem;
-	position: relative;
+.card-content {
+	padding: 24px;
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
 }
 
 .card-title {
+	font-size: 2rem;
 	font-weight: 600;
-	color: #333;
-	margin-bottom: 1rem;
-	text-align: left;
+	color: #2c3e50;
+	margin-bottom: 12px;
+	line-height: 1.3;
+}
+
+.card-image {
+	width: 100%;
+	max-height: 300px;
+	object-fit: cover;
+	object-position: center;
+	border-radius: 12px;
+	transition: transform 0.3s ease;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.card:hover .card-image {
+	transform: scale(1.02);
 }
 
 .card-description {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background: rgba(55, 55, 55, 0.95);
-	color: white;
-	padding: 1.5rem;
-	font-size: 1.8rem;
+	color: #64748b;
+	font-size: 1.5rem;
+	line-height: 1.6;
+	margin-top: auto;
+	margin-bottom: 10px;
+}
+
+.card-link {
+	text-decoration: none;
+	color: inherit;
+	height: 100%;
 	display: flex;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
-	opacity: 0;
-	visibility: hidden;
-	transition: all 0.3s ease;
-	border-radius: 10px;
+	flex-direction: column;
 }
 
-.card:hover .card-description {
-	opacity: 1;
-	visibility: visible;
+.card-link:hover {
+	text-decoration: none;
+	color: inherit;
 }
 
-/* Portfolio */
-.isotopeWrapper article {
-	margin-bottom: 30px;
-	gap: 10px;
+/* Image container to handle overflow */
+.image-container {
+	border-radius: 12px;
+	overflow: hidden;
+	margin-bottom: 20px;
 }
 #portfolio {
 	background: #535353;
@@ -905,7 +918,7 @@ footer {
 
 /* Category Pills */
 .category-pill {
-    display: inline-flex;
+    display: inline-block;
     align-items: center;
     padding: 8px 8px;
     border-radius: 30px;
@@ -1422,6 +1435,10 @@ h1 {
 
 /*--- Media Queries ---*/
 @media (max-width: 934px) {
+.card-grid {
+	grid-template-columns: repeat(2, 1fr);
+	gap: 20px;
+}
 .skillContainer{
 	margin-bottom: 50px;	
 	display: block;
@@ -1557,6 +1574,10 @@ h1 {
 .banner-container {
 	background-size: contain; 
 	overflow:hidden;
+}
+.card-grid {
+	grid-template-columns: 1fr;
+	gap: 20px;
 }
 .header .container{
 padding:0px;
