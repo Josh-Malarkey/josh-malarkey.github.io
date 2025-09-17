@@ -1,59 +1,74 @@
-/**
- * GoatCounter Advanced Tracking Implementation
- * 
+/*
  * Features:
- * - Scroll depth tracking (25%, 50%, 75%, 90%, 100%)
- * - Section visibility tracking using Intersection Observer
- * - Card click tracking with detailed metadata
+ * - Resume section view tracking
+ * - Portfolio section view tracking
+ * - Portfolio Card click tracking (content-focused)
+ * - CCPA/GDPR compliant without consent banners
  * 
  * Usage:
  * 1. Include this script after the GoatCounter script
- * 2. Add data-section="section-name" to sections you want to track
- * 3. Ensure cards have the "card" class
+ * 2. Add data-section="resume" to track resume views
+ * 3. Add data-section="portfolio" to track portfolio views
+ * 4. Add class="card-grid" to track portfolio views
+ * 5. Ensure cards have the "card" class to track clicks
  */
 
 class GoatCounterTracker {
     constructor(options = {}) {
         const isLocalhost = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
-        // Configuration options
+        // configuration options
         this.config = {
-            scrollDepthThresholds: options.scrollDepthThresholds || [25, 50, 75, 90, 100],
-            sectionVisibilityThreshold: options.sectionVisibilityThreshold || 0.1,
-            sectionRootMargin: options.sectionRootMargin || '0px 0px 0px 0px',
-            // debugMode: options.debugMode || false,
             debugMode: isLocalhost,
             statusElementId: options.statusElementId || 'trackingStatus',
             maxGoatCounterWaitAttempts: options.maxGoatCounterWaitAttempts || 50,
+            // privacy-focused defaults
+            respectDoNotTrack: options.respectDoNotTrack !== false,
+            sectionVisibilityThreshold: options.sectionVisibilityThreshold || 0.1,
+            sectionRootMargin: options.sectionRootMargin || '0px 0px 0% 0px',
+            // section tracking timing
+            sectionTrackingDelay: options.sectionTrackingDelay || 1000, // ms to wait before tracking
             ...options
         };
 
-        // Tracking state
-        this.scrollDepthTracked = new Set();
-        this.sectionsTracked = new Set();
+        // tracking state
         this.isGoatCounterReady = false;
         this.eventQueue = [];
+        this.resumeViewed = false;
+        this.portfolioViewed = false;
+        this.sectionsTracked = new Set();
+        this.intersectionObserver = null;
+
+        // check privacy preferences before initializing
+        if (this.shouldRespectDoNotTrack()) {
+            this.log('Do Not Track detected - analytics disabled');
+            return;
+        }
 
         this.init();
     }
 
-    /**
-     * Initialize the tracker
-     */
+    shouldRespectDoNotTrack() {
+        if (!this.config.respectDoNotTrack) return false;
+        
+        return navigator.doNotTrack === '1' || 
+               navigator.msDoNotTrack === '1' || 
+               window.doNotTrack === '1';
+    }
+
     init() {
-        this.log('Initializing GoatCounter Tracker...');
+        this.log('Initializing CCPA/GDPR Compliant Tracker...');
         
         this.waitForGoatCounter()
             .then(() => {
                 this.isGoatCounterReady = true;
                 this.updateStatus('GoatCounter Ready');
-                this.log('GoatCounter is ready, setting up tracking...');
+                this.log('GoatCounter is ready, setting up compliant tracking...');
                 
-                // Process any queued events
+                // process any queued events
                 this.processEventQueue();
                 
-                // Setup tracking methods
-                this.setupScrollDepthTracking();
-                this.setupSectionVisibilityTracking();
+                // setup tracking methods
+                this.setupSectionViewTracking();
                 this.setupCardClickTracking();
                 
                 this.log('All tracking methods initialized successfully');
@@ -64,9 +79,6 @@ class GoatCounterTracker {
             });
     }
 
-    /**
-     * Wait for GoatCounter to be available
-     */
     async waitForGoatCounter(maxAttempts = this.config.maxGoatCounterWaitAttempts) {
         return new Promise((resolve, reject) => {
             let attempts = 0;
@@ -84,9 +96,6 @@ class GoatCounterTracker {
         });
     }
 
-    /**
-     * Update status display (if status element exists)
-     */
     updateStatus(message) {
         const statusElement = document.getElementById(this.config.statusElementId);
         if (statusElement) {
@@ -95,18 +104,13 @@ class GoatCounterTracker {
         this.log(`Status: ${message}`);
     }
 
-    /**
-     * Debug logging
-     */
+    // debug logging
     log(...args) {
         if (this.config.debugMode) {
             console.log('[GoatCounter Tracker]', ...args);
         }
     }
 
-    /**
-     * Process queued events when GoatCounter becomes ready
-     */
     processEventQueue() {
         while (this.eventQueue.length > 0) {
             const event = this.eventQueue.shift();
@@ -114,132 +118,147 @@ class GoatCounterTracker {
         }
     }
 
-    /**
-     * Setup scroll depth tracking
-     */
-    setupScrollDepthTracking() {
-        let ticking = false;
+    setupSectionViewTracking() {
+        // find all elements with data-section attributes
+        const sectionElements = document.querySelectorAll('[data-section]');
         
-        const trackScrollDepth = () => {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const docHeight = Math.max(
-                document.body.scrollHeight,
-                document.body.offsetHeight,
-                document.documentElement.clientHeight,
-                document.documentElement.scrollHeight,
-                document.documentElement.offsetHeight
-            );
-            const winHeight = window.innerHeight;
-            const scrollPercent = Math.round((scrollTop / (docHeight - winHeight)) * 100);
-
-            this.config.scrollDepthThresholds.forEach(threshold => {
-                if (scrollPercent >= threshold && !this.scrollDepthTracked.has(threshold)) {
-                    this.scrollDepthTracked.add(threshold);
-                    this.sendEvent('scroll-depth', `${threshold}%`, { 
-                        actualPercent: scrollPercent 
-                    });
-                    this.updateStatus(`Scroll: ${threshold}%`);
-                }
-            });
-
-            ticking = false;
-        };
-
-        const onScroll = () => {
-            if (!ticking) {
-                requestAnimationFrame(trackScrollDepth);
-                ticking = true;
-            }
-        };
-
-        window.addEventListener('scroll', onScroll, { passive: true });
-        
-        // Initial check in case user starts mid-page
-        setTimeout(trackScrollDepth, 100);
-        
-        this.log('Scroll depth tracking initialized');
-    }
-
-    /**
-     * Setup section visibility tracking using Intersection Observer
-     */
-    setupSectionVisibilityTracking() {
-        // Use more specific selector and check for elements
-        const sections = document.querySelectorAll('[data-section]');
-        
-        this.log(`Found ${sections.length} elements with data-section attribute`);
-        
-        if (!sections.length) {
-            this.log('No sections with data-section attribute found');
+        if (!sectionElements.length) {
+            this.log('No elements with data-section attributes found');
             return;
         }
 
-        // Log all found sections for debugging
-        sections.forEach((section, index) => {
-            this.log(`Section ${index + 1}: data-section="${section.dataset.section}", id="${section.id || 'no-id'}"`);
-        });
+        // check if intersection observer is supported
+        if (!window.IntersectionObserver) {
+            this.log('IntersectionObserver not supported, falling back to immediate tracking');
+            // fallback: track immediately visible sections
+            sectionElements.forEach(element => {
+                const sectionName = element.getAttribute('data-section');
+                this.trackSectionView(sectionName);
+            });
+            return;
+        }
 
-        const observerOptions = {
-            root: null, // Use viewport as root
-            threshold: this.config.sectionVisibilityThreshold,
-            rootMargin: this.config.sectionRootMargin
-        };
-
-        const sectionObserver = new IntersectionObserver((entries) => {
-            this.log(`Intersection Observer triggered for ${entries.length} entries`);
-            
-            entries.forEach(entry => {
-                const sectionName = entry.target.dataset.section;
-                const sectionId = entry.target.id || 'unnamed-section';
-                
-                this.log(`Section "${sectionName}" intersection:`, {
-                    isIntersecting: entry.isIntersecting,
-                    intersectionRatio: entry.intersectionRatio.toFixed(3),
-                    boundingRect: {
-                        top: Math.round(entry.boundingClientRect.top),
-                        bottom: Math.round(entry.boundingClientRect.bottom)
+        // create intersection observer for section tracking
+        this.intersectionObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const sectionName = entry.target.getAttribute('data-section');
+                        this.handleSectionIntersection(sectionName, entry.target);
                     }
                 });
-                
-                if (entry.isIntersecting) {
-                    // Use a unique key that includes both section name and element ID to handle duplicates
-                    const uniqueKey = `${sectionName}-${sectionId}`;
-                    
-                    if (!this.sectionsTracked.has(uniqueKey)) {
-                        this.sectionsTracked.add(uniqueKey);
-                        this.sendEvent('section-view', sectionName, {
-                            elementId: sectionId,
-                            intersectionRatio: entry.intersectionRatio,
-                            uniqueKey: uniqueKey
-                        });
-                        this.updateStatus(`Section: ${sectionName}`);
-                        this.log(`✅ Tracked section view: ${sectionName} (${uniqueKey})`);
-                    } else {
-                        this.log(`⏭️ Section already tracked: ${sectionName} (${uniqueKey})`);
-                    }
-                }
-            });
-        }, observerOptions);
-
-        // Observe each section individually
-        sections.forEach((section, index) => {
-            try {
-                sectionObserver.observe(section);
-                this.log(`✅ Observing section ${index + 1}: ${section.dataset.section}`);
-            } catch (error) {
-                this.log(`❌ Error observing section ${index + 1}:`, error);
+            },
+            {
+                root: null, // viewport
+                rootMargin: this.config.sectionRootMargin,
+                threshold: this.config.sectionVisibilityThreshold
             }
+        );
+
+        // observe all section elements
+        sectionElements.forEach(element => {
+            this.intersectionObserver.observe(element);
         });
 
-        this.log(`Section visibility tracking initialized for ${sections.length} sections`);
-        
-        // Store reference to observer for potential cleanup
-        this.sectionObserver = sectionObserver;
+        this.log(`Section view tracking initialized for ${sectionElements.length} sections`);
     }
 
-    /**
-     * Setup card click tracking
-     */
+    handleSectionIntersection(sectionName, element) {
+        // prevent duplicate tracking
+        if (this.sectionsTracked.has(sectionName)) {
+            return;
+        }
+
+        this.log(`Section "${sectionName}" became visible`);
+
+        // add delay to ensure user actually viewed the section
+        setTimeout(() => {
+            // check if element is still visible (user didn't just scroll past quickly)
+            if (this.isElementStillVisible(element)) {
+                this.trackSectionView(sectionName);
+            }
+        }, this.config.sectionTrackingDelay);
+    }
+
+    isElementStillVisible(element) {
+        const rect = element.getBoundingClientRect();
+        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+        const windowWidth = window.innerWidth || document.documentElement.clientWidth;
+
+        return (
+            rect.top < windowHeight &&
+            rect.bottom > 0 &&
+            rect.left < windowWidth &&
+            rect.right > 0
+        );
+    }
+
+    trackSectionView(sectionName) {
+        // prevent duplicate tracking
+        if (this.sectionsTracked.has(sectionName)) {
+            return;
+        }
+
+        this.sectionsTracked.add(sectionName);
+
+        // specific handling for resume and portfolio sections
+        switch (sectionName.toLowerCase()) {
+            case 'resume':
+                this.trackResumeView();
+                break;
+            case 'portfolio':
+                this.trackPortfolioView();
+                break;
+            default:
+                // track any other sections generically
+                this.sendEvent('section-view', sectionName);
+                this.updateStatus(`Section Viewed: ${sectionName}`);
+                break;
+        }
+
+        this.log(`Section "${sectionName}" view tracked`);
+    }
+
+    trackResumeView() {
+        if (this.resumeViewed) {
+            this.log('Resume already tracked, skipping duplicate');
+            return;
+        }
+
+        this.resumeViewed = true;
+        
+        this.sendEvent('section-view', 'resume', {
+            timestamp: new Date().toISOString(),
+            userAgent: navigator.userAgent.split(' ')[0], // minimal UA info
+            screenSize: `${screen.width}x${screen.height}`
+        });
+        
+        this.updateStatus('Resume Viewed');
+        this.log('Resume section view tracked');
+    }
+
+    trackPortfolioView() {
+        if (this.portfolioViewed) {
+            this.log('Portfolio already tracked, skipping duplicate');
+            return;
+        }
+
+        this.portfolioViewed = true;
+        
+        // count portfolio items for context
+        const portfolioCards = document.querySelectorAll('[data-section="portfolio"] .card, .card-grid .card');
+        
+        this.sendEvent('section-view', 'portfolio', {
+            timestamp: new Date().toISOString(),
+            portfolioItemCount: portfolioCards.length,
+            userAgent: navigator.userAgent.split(' ')[0], // minimal UA info
+            screenSize: `${screen.width}x${screen.height}`
+        });
+        
+        this.updateStatus('Portfolio Viewed');
+        this.log(`Portfolio section view tracked (${portfolioCards.length} items)`);
+    }
+
     setupCardClickTracking() {
         const cards = document.querySelectorAll('.card');
         
@@ -254,48 +273,32 @@ class GoatCounterTracker {
                 
                 this.sendEvent('card-click', cardData.title, {
                     link: cardData.link,
-                    category: cardData.category,
                     position: cardData.position,
-                    section: cardData.section,
-                    hasImage: cardData.hasImage
+                    timestamp: new Date().toISOString()
                 });
                 
                 this.updateStatus(`Card Click: ${cardData.title}`);
                 
-                // Let the default action (link navigation) continue
+                // let the default action (link navigation) continue
             }, { passive: true });
         });
 
         this.log(`Card click tracking initialized for ${cards.length} cards`);
     }
 
-    /**
-     * Extract data from a card element
-     */
     extractCardData(card, index) {
         const titleElement = card.querySelector('.card-title, h1, h2, h3, h4, h5, h6');
         const linkElement = card.querySelector('a');
-        const categoryElement = card.querySelector('.category-pill, .category');
-        const imageElement = card.querySelector('.card-image, img');
-        
-        // Find the section this card belongs to
-        const closestSection = card.closest('[data-section]');
         
         return {
             title: titleElement?.textContent?.trim() || `Card ${index + 1}`,
             link: linkElement?.href || 'no-link',
-            category: categoryElement?.textContent?.trim() || 'uncategorized',
-            position: index + 1,
-            section: closestSection?.dataset.section || 'unknown-section',
-            hasImage: !!imageElement
+            position: index + 1
         };
     }
 
-    /**
-     * Send event to GoatCounter
-     */
     sendEvent(eventName, eventValue, additionalData = {}) {
-        // If GoatCounter isn't ready, queue the event
+        // if goatcounter isn't ready, queue the event
         if (!this.isGoatCounterReady) {
             this.eventQueue.push({ name: eventName, value: eventValue, data: additionalData });
             this.log('GoatCounter not ready, queuing event:', eventName, eventValue);
@@ -303,10 +306,10 @@ class GoatCounterTracker {
         }
 
         try {
-            // Clean the event value for URL-safe path
+            // clean the event value for URL-safe path
             const cleanEventValue = String(eventValue).replace(/[^a-zA-Z0-9-._~]/g, '-');
             
-            // GoatCounter event tracking
+            // CCPA/GDPR compliant event tracking - only functional data, no PII
             window.goatcounter.count({
                 path: `${eventName}/${cleanEventValue}`,
                 title: `${eventName}: ${eventValue}`,
@@ -324,72 +327,35 @@ class GoatCounterTracker {
         }
     }
 
-    /**
-     * Public method to manually track custom events
-     */
-    trackCustomEvent(eventName, eventValue, additionalData = {}) {
-        this.sendEvent(eventName, eventValue, additionalData);
+    // public method to manually track sections (for dynamic content)
+    manuallyTrackSection(sectionName) {
+        this.log(`Manually tracking section: ${sectionName}`);
+        this.trackSectionView(sectionName);
     }
 
-    /**
-     * Public method to get current tracking state
-     */
-    getTrackingState() {
-        return {
-            isReady: this.isGoatCounterReady,
-            scrollDepthTracked: Array.from(this.scrollDepthTracked),
-            sectionsTracked: Array.from(this.sectionsTracked),
-            queuedEvents: this.eventQueue.length,
-            sectionsFound: document.querySelectorAll('[data-section]').length,
-            cardsFound: document.querySelectorAll('.card').length
-        };
-    }
-
-    /**
-     * Public method to reset tracking state (useful for testing)
-     */
-    resetTrackingState() {
-        this.scrollDepthTracked.clear();
-        this.sectionsTracked.clear();
-        this.log('Tracking state reset');
-    }
-
-    /**
-     * Public method to manually trigger section detection
-     */
-    recheckSections() {
-        if (this.sectionObserver) {
-            this.sectionObserver.disconnect();
-        }
-        this.setupSectionVisibilityTracking();
-        this.log('Section tracking reinitialized');
-    }
-
-    /**
-     * Cleanup method
-     */
+    // cleanup method
     destroy() {
-        if (this.sectionObserver) {
-            this.sectionObserver.disconnect();
+        if (this.intersectionObserver) {
+            this.intersectionObserver.disconnect();
+            this.intersectionObserver = null;
         }
-        // Remove event listeners would go here if we stored references
-        this.log('GoatCounter tracker destroyed');
+        this.log('Tracker destroyed and cleaned up');
     }
 }
 
-// Auto-initialize when DOM is ready
+// auto-initialize when DOM is ready
 function initializeGoatCounterTracking(options = {}) {
     if (typeof window !== 'undefined') {
         const tracker = new GoatCounterTracker(options);
         
-        // Make tracker globally accessible for custom tracking
+        // make tracker globally accessible for custom tracking
         window.goatCounterTracker = tracker;
         
         return tracker;
     }
 }
 
-// Initialize automatically when script loads
+// initialize automatically when script loads
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         initializeGoatCounterTracking();
@@ -398,7 +364,7 @@ if (document.readyState === 'loading') {
     initializeGoatCounterTracking();
 }
 
-// Export for module usage
+// export for module usage
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { GoatCounterTracker, initializeGoatCounterTracking };
 }
