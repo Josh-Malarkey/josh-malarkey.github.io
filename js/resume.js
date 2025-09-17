@@ -7,11 +7,11 @@ const RESUME_DATA = {
             "End Month": "Present",
             "Accomplishments": [
                 {
-                    "Description": "Consulted with executive leadership to implement a company wide KPI framework",
+                    "Description": "Consulted with executive leadership to implement a company wide key performance indicator (KPI) framework",
                     "Categories": ["Leadership", "Teamwork"]
                 },
                 {
-                    "Description": "Created CPC/CPM attribution models demonstrating an average 3X ROAS for campaign spend",
+                    "Description": "Created attribution models demonstrating a 3X average return on ad spend (ROAS)",
                     "Categories": ["Ownership", "Problem Solving"]
                 },
             ],
@@ -33,7 +33,7 @@ const RESUME_DATA = {
                     "Categories": ["Continuous Learning", "Problem Solving"]
                 },
                 {
-                    "Description": "Lead project to develop data product strategy contributing $450K in ARR",
+                    "Description": "Directed development of data product strategy, driving $450K in annual recurring revenue (ARR)",
                     "Categories": ["Communication", "Leadership"]
                 }
             ],
